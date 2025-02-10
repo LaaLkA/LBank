@@ -1,0 +1,56 @@
+version: '3.8'
+
+networks:
+  microservices-network:
+    driver: bridge
+
+services:
+
+  eureka-server:
+    build:
+      context: ./eureka-server
+    container_name: eureka-server
+#    depends_on:
+#      - config-server
+    ports:
+      - 8761:8761
+    networks:
+      - microservices-network
+    restart: always
+
+  api-gateway:
+    build:
+      context: ./api-gateway
+    container_name: api-gateway
+    depends_on:
+      - eureka-server
+    ports:
+      - 8080:8080
+    networks:
+      - microservices-network
+    restart: always
+
+  user-service:
+    build:
+      context: ./user-service
+    container_name: user-service
+    depends_on:
+      - eureka-server
+    ports:
+      - 8081:8081
+    networks:
+      - microservices-network
+    restart: always
+
+  postgres-user:
+    image: postgres:15
+    container_name: postgres-user
+    environment:
+      POSTGRES_DB: user_db
+      POSTGRES_USER: Auser
+      POSTGRES_PASSWORD: 123
+    ports:
+      - 5432:5432
+    networks:
+      - microservices-network
+    restart: always
