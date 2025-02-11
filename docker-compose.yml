@@ -40,6 +40,9 @@ services:
       - 8081:8081
     networks:
       - microservices-network
+    environment:
+          SPRING_DATASOURCE_USERNAME: "Auser"
+          SPRING_DATASOURCE_PASSWORD: "123"
     restart: always
 
   postgres-user:
