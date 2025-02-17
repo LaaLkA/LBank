@@ -11,6 +11,12 @@ public class ExpenseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name="user_id")
+    private Long userId;
+
+    @Column(name="receiver_id")
+    private Long receiverId;
+
     @Column(name = "amount")
     private Double amount;
 

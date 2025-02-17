@@ -16,16 +16,16 @@
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
         </processorPath>
-        <module name="analytics-service" />
+        <module name="expenses-service" />
         <module name="user-service" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="analytics-service" options="-parameters" />
       <module name="api-gateway" options="-parameters" />
       <module name="eureka-server" options="-parameters" />
+      <module name="expenses-service" options="-parameters" />
       <module name="user-service" options="-parameters" />
     </option>
   </component>
