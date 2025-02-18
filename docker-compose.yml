@@ -49,9 +49,9 @@ services:
     image: postgres:15
     container_name: postgres-user
     environment:
-      POSTGRES_DB: user_db
-      POSTGRES_USER: Auser
-      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: LBank
+      POSTGRES_USER: Admin
+      POSTGRES_PASSWORD: 1234
     ports:
       - 5432:5432
     networks:

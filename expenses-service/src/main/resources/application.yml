@@ -1,12 +1,13 @@
 server:
+  forward-headers-strategy: framework
   port: 8082
 spring:
   application:
     name: analytics-service
   datasource:
-    url: jdbc:postgresql://postgres-analytics:5432/expenses_db
-    username: Euser
-    password: 123
+    url: jdbc:postgresql://postgres-analytics:5432/LBank
+    username: Admin
+    password: 1234
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
