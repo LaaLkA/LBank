@@ -17,10 +17,14 @@ spring:
             - Path=/user/**
           filters:
             - StripPrefix=1
-        - id: analytics-service
-          uri: lb://ANALYTICS-SERVICE
+        - id: expenses-service
+          uri: lb://EXPENSES-SERVICE
           predicates:
-            - Path=/analytics/**
+            - Path=/expenses/**
+        - id: payment-service
+          uri: lb://PAYMENT-SERVICE
+          predicates:
+            - Path=/payment/**
 
 eureka:
   client:

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/payment")
+@RequestMapping("/transfer")
 public class PaymentController {
 
     private final PaymentService paymentService;
@@ -19,7 +19,7 @@ public class PaymentController {
         this.paymentService = paymentService;
     }
 
-    @PostMapping("/transfer")
+    @PostMapping()
     public ResponseEntity<String> transfer(@Valid @RequestBody TransferRequest request) {
         paymentService.transaction(
                 request.getSenderId(),

@@ -19,6 +19,11 @@ public class UserHashService {
         return sha256(userData);
     }
 
+    public String userTransactionHash(Long userId, String userName, LocalDateTime userCreated) {
+        String userData = userId.toString() + userName + userCreated + LocalDateTime.now().toString();
+        return sha256(userData);
+    }
+
     private String sha256(String inputData) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
