@@ -52,7 +52,6 @@ public class SecurityConfig {
                         .requestMatchers("/register").permitAll()
                         .anyRequest().authenticated()
                 )
-                // подключаем стандартную форму логина (или httpBasic)
                 .formLogin(Customizer.withDefaults());
         return http.build();
     }

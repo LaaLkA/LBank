@@ -6,9 +6,9 @@ spring:
   application:
     name: user-service
   datasource:
-    url: jdbc:postgresql://postgres-user:5432/user_db
-    username: Auser
-    pass: 123
+    url: jdbc:postgresql://postgres-user:5432/LBank
+    username: admin
+    pass: 1234
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
