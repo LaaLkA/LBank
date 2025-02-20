@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>LBank WebService - Index</title>
+</head>
+<body>
+<h1>[[${welcomeMessage}]]</h1>
+<nav>
+    <a th:href="@{/auth/ui/login}">Login</a> |
+    <a th:href="@{/auth/ui/register}">Register</a>
+</nav>
+</body>
+</html>

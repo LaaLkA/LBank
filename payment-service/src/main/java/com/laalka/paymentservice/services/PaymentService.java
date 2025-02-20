@@ -41,7 +41,7 @@ public class PaymentService {
                             String receiverUserName,
                             LocalDateTime receiverUserCreated) {
 
-        String transactionId = userHashService.userHash(senderId, senderUserName, senderUserCreated);
+        String transactionId = userHashService.userTransactionHash(senderId, senderUserName, senderUserCreated);
 
         BalanceEntity senderBalance = balanceRepository.findBalanceByHashUser(
                 userHashService.userHash(senderId, senderUserName, senderUserCreated));

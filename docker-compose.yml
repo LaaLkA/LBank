@@ -5,6 +5,21 @@ networks:
     driver: bridge
 
 services:
+  web-service:
+    build:
+      context: ./web-service
+    container_name: web-service
+    depends_on:
+      - eureka-server
+      - api-gateway
+    ports:
+      - "8080:8080"
+    networks:
+      - microservices-network
+    environment:
+      SPRING_PROFILES_ACTIVE: "docker"
+    restart: always
+
 
   eureka-server:
     build:
@@ -25,7 +40,7 @@ services:
     depends_on:
       - eureka-server
     ports:
-      - 8080:8080
+      - 8089:8089
     networks:
       - microservices-network
     restart: always
@@ -86,6 +101,21 @@ services:
       - 5432:5432
     networks:
       - microservices-network
+    restart: always
+
+  auth-service:
+    build:
+      context: ./auth-service
+    container_name: auth-service
+    depends_on:
+      - eureka-server
+    ports:
+      - "8084:8084"
+    networks:
+      - microservices-network
+    environment:
+      SPRING_DATASOURCE_USERNAME: Admin
+      SPRING_DATASOURCE_PASSWORD: 1234
     restart: always
 
   PGAdmin:

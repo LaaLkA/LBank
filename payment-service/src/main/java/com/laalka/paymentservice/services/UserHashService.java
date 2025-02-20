@@ -20,7 +20,7 @@ public class UserHashService {
     }
 
     public String userTransactionHash(Long userId, String userName, LocalDateTime userCreated) {
-        String userData = userId.toString() + userName + userCreated + LocalDateTime.now().toString();
+        String userData = userId.toString() + userName + userCreated + LocalDateTime.now();
         return sha256(userData);
     }
 
