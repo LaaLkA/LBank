@@ -57,7 +57,7 @@ public class AuthUIController {
                              Model model) {
         try {
             gatewayClient.register(username, password);
-            return "redirect:/auth/ui/login";
+            return "redirect:/auth/login";
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
             return "auth/register";
