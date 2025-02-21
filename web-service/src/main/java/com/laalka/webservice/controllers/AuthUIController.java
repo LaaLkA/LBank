@@ -12,7 +12,7 @@ import jakarta.servlet.http.Cookie;
 
 
 @Controller
-@RequestMapping("/auth/ui")
+@RequestMapping()
 public class AuthUIController {
 
     private final GatewayClientService gatewayClient;
@@ -23,7 +23,7 @@ public class AuthUIController {
 
     @GetMapping("/login")
     public String loginForm() {
-        return "auth/login"; // templates/auth/login.html
+        return "auth/login";
     }
 
     @PostMapping("/login")
@@ -32,10 +32,8 @@ public class AuthUIController {
                           Model model,
                           HttpServletResponse response) {
         try {
-            // вызывем auth-service -> /auth/login
             String token = gatewayClient.login(username, password);
 
-            // Сохраняем JWT, например, в cookie
             Cookie cookie = new Cookie("JWT_TOKEN", token);
             cookie.setHttpOnly(true);
             cookie.setPath("/");
@@ -59,7 +57,6 @@ public class AuthUIController {
                              Model model) {
         try {
             gatewayClient.register(username, password);
-            // После регистрации можем перенаправлять на login
             return "redirect:/auth/ui/login";
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
