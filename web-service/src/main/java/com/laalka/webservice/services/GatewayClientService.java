@@ -1,11 +1,7 @@
 package com.laalka.webservice.services;
 
-import com.laalka.webservice.config.WebConfig;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
-import org.springframework.web.client.RestTemplate;
-
-import java.net.URLEncoder;
 
 @Service
 public class GatewayClientService {
@@ -21,7 +17,7 @@ public class GatewayClientService {
         try {
             return restClient
                     .post()
-                    .uri("/auth/login&username={username}&password={password}", username, password)
+                    .uri("/auth/login?username={username}&password={password}", username, password)
                     .retrieve()
                     .body(String.class);
         } catch (Exception e) {
@@ -39,6 +35,15 @@ public class GatewayClientService {
         }catch (Exception e) {
             throw new RuntimeException("Register failed: " + e.getMessage(), e);
         }
+    }
+
+    public String getProtectedData(String token) {
+        return restClient
+                .get()
+                .uri("/auth/protected-endpoint")
+                .header("Authorization", "Bearer " + token)
+                .retrieve()
+                .body(String.class);
     }
 
 }

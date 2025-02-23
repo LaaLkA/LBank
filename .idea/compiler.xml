@@ -25,6 +25,10 @@
         <module name="web-service" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="expenses-service" target="17" />
+      <module name="payment_service" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

@@ -1,5 +1,6 @@
 package com.laalka.authservice.services;
 
+import com.laalka.authservice.api.UserProfileService;
 import com.laalka.authservice.models.AuthUser;
 import com.laalka.authservice.repositories.AuthUserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -9,11 +10,13 @@ import org.springframework.stereotype.Service;
 public class AuthService {
     private final AuthUserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final UserProfileService userProfileService;
 
     public AuthService(AuthUserRepository userRepository,
-                       PasswordEncoder passwordEncoder) {
+                       PasswordEncoder passwordEncoder, UserProfileService userProfileService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.userProfileService = userProfileService;
     }
 
     public AuthUser register(String username, String rawPassword, String role) {
@@ -24,6 +27,7 @@ public class AuthService {
         user.setUsername(username);
         user.setPassword(passwordEncoder.encode(rawPassword));
         user.setRole(role);
+        userProfileService.createProfile(username);
         return userRepository.save(user);
     }
 

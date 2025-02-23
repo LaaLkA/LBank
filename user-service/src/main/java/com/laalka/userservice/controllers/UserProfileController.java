@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("")
 public class UserProfileController {
 
     private final UserProfileService profileService;
@@ -18,7 +18,7 @@ public class UserProfileController {
     @PostMapping("/profile/create")
     public ResponseEntity<?> createProfile(
             @RequestParam String username,
-            @RequestParam String email,
+            @RequestParam(required=false) String email,
             @RequestParam(required=false) String firstName,
             @RequestParam(required=false) String lastName,
             @RequestParam(required=false) String phone

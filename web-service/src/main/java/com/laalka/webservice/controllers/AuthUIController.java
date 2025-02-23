@@ -39,7 +39,7 @@ public class AuthUIController {
             cookie.setPath("/");
             response.addCookie(cookie);
 
-            return "redirect:/";
+            return "redirect:/home";
         } catch (Exception e) {
             model.addAttribute("error", "Invalid credentials");
             return "auth/login";
@@ -57,11 +57,15 @@ public class AuthUIController {
                              Model model) {
         try {
             gatewayClient.register(username, password);
-            return "redirect:/auth/login";
+            return "redirect:/login";
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
             return "auth/register";
         }
+    }
+    @GetMapping("/home")
+    public String home(){
+        return "home";
     }
 }
 
