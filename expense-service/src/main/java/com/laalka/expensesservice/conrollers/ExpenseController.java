@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
@@ -26,12 +27,12 @@ public class ExpenseController {
 
     /**
      * Получение всех сущностей трат по userId
-     * @param userId
+     * @param userHash
      * @return
      */
     @GetMapping("/user/{userId}")
-    public ResponseEntity<List<ExpenseResponse>> getExpensesByUser(@PathVariable Long userId) {
-        List<ExpenseEntity> entities = expenseService.expensesList(userId);
+    public ResponseEntity<List<ExpenseResponse>> getExpensesByUser(@PathVariable String userHash) {
+        List<ExpenseEntity> entities = expenseService.expensesList(userHash);
 
         List<ExpenseResponse> responseList = entities.stream()
                 .map(expenseMapper::fromEntityToResponse)
@@ -51,14 +52,14 @@ public class ExpenseController {
 
         if (request.getCategory() == null || request.getCategory().isBlank()) {
             createdEntity = expenseService.createExpense(
-                    request.getUserId(),
-                    request.getReceiverId(),
+                    request.getUserHash(),
+                    request.getReceiverHash(),
                     request.getAmount()
             );
         } else {
             createdEntity = expenseService.createExpense(
-                    request.getUserId(),
-                    request.getReceiverId(),
+                    request.getUserHash(),
+                    request.getReceiverHash(),
                     request.getAmount(),
                     request.getCategory()
             );
@@ -75,12 +76,12 @@ public class ExpenseController {
      * @return
      */
     @PutMapping("/update/{expenseId}")
-    public ResponseEntity<ExpenseResponse> updateExpense(@PathVariable Long expenseId,
+    public ResponseEntity<ExpenseResponse> updateExpense(@PathVariable UUID expenseId,
                                                          @RequestBody @Valid ExpenseRequest request) {
         ExpenseEntity updatedEntity = expenseService.updateExpense(
                 expenseId,
-                request.getUserId(),
-                request.getReceiverId(),
+                request.getUserHash(),
+                request.getReceiverHash(),
                 request.getAmount(),
                 request.getCategory()
         );

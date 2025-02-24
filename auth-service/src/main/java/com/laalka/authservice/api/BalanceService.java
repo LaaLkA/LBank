@@ -11,11 +11,11 @@ public class BalanceService {
 
     private final RestClient restClient;
 
-    public void createBalance(String username) {
+    public void createBalance(String userHash) {
         try {
             restClient
                     .post()
-                    .uri("/payment/balance/create?username={username}", username)
+                    .uri("/payment/balance/create?userHash={userHash}", userHash)
                     .retrieve()
                     .body(String.class);
         }catch (Exception e) {

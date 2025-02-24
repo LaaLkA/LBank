@@ -1,25 +1,26 @@
-package com.laalka.paymentservice.services;
+package com.laalka.authservice.utils;
 
-import org.aspectj.bridge.Message;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Сервис, который делает HashCode слепок пользователя
  */
-@Service
-public class UserHashService {
+@Component
+public class HashService {
 
-    public String userHash(Long userId, String userName, LocalDateTime userCreated) {
+    public String userHash(UUID userId, String userName, LocalDateTime userCreated) {
         String userData = userId.toString() + userName + userCreated;
         return sha256(userData);
     }
 
-    public String userTransactionHash(Long userId, String userName, LocalDateTime userCreated) {
+    public String userTransactionHash(UUID userId, String userName, LocalDateTime userCreated) {
         String userData = userId.toString() + userName + userCreated + LocalDateTime.now();
         return sha256(userData);
     }

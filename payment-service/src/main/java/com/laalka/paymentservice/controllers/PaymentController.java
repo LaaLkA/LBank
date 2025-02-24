@@ -22,13 +22,9 @@ public class PaymentController {
     @PostMapping()
     public ResponseEntity<String> transfer(@Valid @RequestBody TransferRequest request) {
         paymentService.transaction(
-                request.getSenderId(),
-                request.getSenderName(),
-                request.getSenderCreated(),
-                request.getAmount(),
-                request.getReceiverId(),
-                request.getReceiverName(),
-                request.getReceiverCreated()
+                request.getSenderHash(),
+                request.getReceiverHash(),
+                request.getAmount()
         );
         return ResponseEntity.ok("Transfer successful");
     }

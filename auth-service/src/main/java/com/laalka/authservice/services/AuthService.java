@@ -1,22 +1,30 @@
 package com.laalka.authservice.services;
 
+import com.laalka.authservice.api.BalanceService;
 import com.laalka.authservice.api.UserProfileService;
 import com.laalka.authservice.models.AuthUser;
 import com.laalka.authservice.repositories.AuthUserRepository;
+import com.laalka.authservice.utils.HashService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
 
 @Service
 public class AuthService {
     private final AuthUserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final UserProfileService userProfileService;
+    private final HashService hashService;
+    private final BalanceService balanceService;
 
     public AuthService(AuthUserRepository userRepository,
-                       PasswordEncoder passwordEncoder, UserProfileService userProfileService) {
+                       PasswordEncoder passwordEncoder, UserProfileService userProfileService, HashService hashService, BalanceService balanceService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.userProfileService = userProfileService;
+        this.hashService = hashService;
+        this.balanceService = balanceService;
     }
 
     public AuthUser register(String username, String rawPassword, String role) {
@@ -27,7 +35,10 @@ public class AuthService {
         user.setUsername(username);
         user.setPassword(passwordEncoder.encode(rawPassword));
         user.setRole(role);
-        userProfileService.createProfile(username);
+        user.setTimeCreated(LocalDateTime.now());
+        user.setUserHash(hashService.userHash(user.getId(), username, user.getTimeCreated()));
+        userProfileService.createProfile(user.getUserHash(), username);
+        balanceService.createBalance(user.getUserHash());
         return userRepository.save(user);
     }
 

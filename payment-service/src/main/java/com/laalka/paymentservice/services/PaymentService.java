@@ -4,12 +4,12 @@ import com.laalka.paymentservice.models.BalanceEntity;
 import com.laalka.paymentservice.models.OutboxEvent;
 import com.laalka.paymentservice.repositories.BalanceRepository;
 import com.laalka.paymentservice.repositories.OutboxEventRepository;
+import com.laalka.paymentservice.utils.HashService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 import com.laalka.events.PaymentEvent;
 
@@ -19,43 +19,31 @@ public class PaymentService {
     private BalanceRepository balanceRepository;
 
     @Autowired
-    private UserHashService userHashService;
-
-    @Autowired
     private OutboxEventRepository outboxEventRepository;
 
     @Autowired
     private JsonService jsonService;
 
-    public BalanceEntity findBalanceByHashUser(Long userId, String userName, LocalDateTime userCreated) {
-        return balanceRepository.findBalanceByHashUser(
-                userHashService.userHash(userId, userName, userCreated));
-    }
+    @Autowired
+    private HashService hashService;
+
 
     @Transactional
-    public void transaction(Long senderId,
-                            String senderUserName,
-                            LocalDateTime senderUserCreated,
-                            Double amount,
-                            Long receiverId,
-                            String receiverUserName,
-                            LocalDateTime receiverUserCreated) {
+    public void transaction(String senderHash,
+                            String receiverHash,
+                            Double amount) {
 
-        String transactionId = userHashService.userTransactionHash(senderId, senderUserName, senderUserCreated);
-
-        BalanceEntity senderBalance = balanceRepository.findBalanceByHashUser(
-                userHashService.userHash(senderId, senderUserName, senderUserCreated));
+        BalanceEntity senderBalance = balanceRepository.findBalanceByHashUser(senderHash);
         if (senderBalance == null) {
             throw new RuntimeException("Sender not found");
         }
 
-        BalanceEntity receiverBalance = balanceRepository.findBalanceByHashUser(
-                userHashService.userHash(receiverId, receiverUserName, receiverUserCreated));
+        BalanceEntity receiverBalance = balanceRepository.findBalanceByHashUser(receiverHash);
         if (receiverBalance == null) {
             throw new RuntimeException("Receiver not found");
         }
 
-        if(senderBalance.getBalance() < amount) {
+        if (senderBalance.getBalance() < amount) {
             throw new RuntimeException("Sender doesn't have enough money");
         }
 
@@ -65,9 +53,9 @@ public class PaymentService {
         balanceRepository.save(receiverBalance);
 
         PaymentEvent event = new PaymentEvent(
-                transactionId,
-                senderId,
-                receiverId,
+                hashService.transactionHash(senderHash, receiverHash),
+                senderHash,
+                receiverHash,
                 amount,
                 LocalDateTime.now().toString()
         );
@@ -76,7 +64,7 @@ public class PaymentService {
 
         OutboxEvent outboxEvent = OutboxEvent.builder()
                 .eventType("PAYMENT_EVENT")
-                .aggregateId(senderId.toString())
+                .aggregateId(senderHash.toString())
                 .payload(eventJson)
                 .createdAt(LocalDateTime.now())
                 .processed(false)

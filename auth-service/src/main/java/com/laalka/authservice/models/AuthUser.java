@@ -3,6 +3,7 @@ package com.laalka.authservice.models;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -21,4 +22,10 @@ public class AuthUser {
 
     @Column(nullable = false)
     private String role;
+
+    @Column(nullable = false)
+    private LocalDateTime timeCreated;
+
+    @Column(nullable = false)
+    private String userHash;
 }

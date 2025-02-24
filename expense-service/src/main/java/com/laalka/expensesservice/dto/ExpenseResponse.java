@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+
 /**
  * DTO для ответа о расходе.
  */
@@ -13,11 +15,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ExpenseResponse {
 
-    private Long id;
-    private Long userId;
+    private UUID id;
+    private String userHash;
 
     @NotNull
-    private Long receiverId;
+    private String receiverHash;
     @NotNull
     private Double amount;
 

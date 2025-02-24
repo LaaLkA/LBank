@@ -12,16 +12,16 @@ public class UserProfileService {
         this.repository = repository;
     }
 
-    public UserProfile createProfile(String username, String email, String firstName, String lastName, String phone) {
-        if (repository.findByUsername(username) != null) {
-            throw new RuntimeException("Profile already exists for username=" + username);
+    public UserProfile createProfile(String userHash, String userName) {
+        if (repository.findByUsername(userName) != null) {
+            throw new RuntimeException("Profile already exists for username=" + userName);
         }
         UserProfile profile = new UserProfile();
-        profile.setUsername(username);
-        profile.setEmail(email);
-        profile.setFirstName(firstName);
-        profile.setLastName(lastName);
-        profile.setPhone(phone);
+        profile.setUsername(userName);
+        profile.setEmail(null);
+        profile.setFirstName(null);
+        profile.setLastName(null);
+        profile.setPhone(null);
         return repository.save(profile);
     }
 

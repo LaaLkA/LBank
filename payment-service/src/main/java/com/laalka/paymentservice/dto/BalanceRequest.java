@@ -15,11 +15,7 @@ import java.time.LocalDateTime;
 public class BalanceRequest {
 
     @NotNull
-    private Long userId;
-    @NotNull
-    private String userName;
-    @NotNull
-    private LocalDateTime userCreated;
+    private String userHash;
 
     public BalanceRequest() {
     }

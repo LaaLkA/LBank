@@ -21,4 +21,7 @@ public class UserProfile {
     private String lastName;
     private String phone;
 
+    @Column(unique = true)
+    private String userHash;
+
 }

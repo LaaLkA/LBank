@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 @Builder
 public class PaymentEvent {
     private String transactionId;
-    private Long senderId;
-    private Long receiverId;
+    private String senderHash;
+    private String receiverHash;
     private Double amount;
     private String timestamp;
 }

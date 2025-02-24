@@ -13,9 +13,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ExpenseRequest {
     @NotNull
-    private Long userId;
+    private String userHash;
 
-    private Long receiverId;
+    private String receiverHash;
     private Double amount;
     private String category;
 

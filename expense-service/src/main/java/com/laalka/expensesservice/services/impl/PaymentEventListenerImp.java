@@ -38,8 +38,8 @@ public class PaymentEventListenerImp implements PaymentEventListener {
             }
 
             expenseService.createExpense(
-                    event.getSenderId(),
-                    event.getReceiverId(),
+                    event.getSenderHash(),
+                    event.getReceiverHash(),
                     event.getAmount(),
                     "transfer"
             );

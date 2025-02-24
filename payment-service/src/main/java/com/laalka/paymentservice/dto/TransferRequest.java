@@ -13,23 +13,16 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 public class TransferRequest {
+
     @NotNull
-    private Long senderId;
-    @NotNull
-    private String senderName;
-    @NotNull
-    private LocalDateTime senderCreated;
+    private String senderHash;
 
     @NotNull
     @Positive
     private Double amount;
 
     @NotNull
-    private Long receiverId;
-    @NotNull
-    private String receiverName;
-    @NotNull
-    private LocalDateTime receiverCreated;
+    private String receiverHash;
 
     public TransferRequest() {
 

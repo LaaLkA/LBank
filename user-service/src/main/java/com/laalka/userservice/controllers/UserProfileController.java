@@ -17,19 +17,16 @@ public class UserProfileController {
 
     @PostMapping("/profile/create")
     public ResponseEntity<?> createProfile(
-            @RequestParam String username,
-            @RequestParam(required=false) String email,
-            @RequestParam(required=false) String firstName,
-            @RequestParam(required=false) String lastName,
-            @RequestParam(required=false) String phone
+            @RequestParam String userHash,
+            @RequestParam String userName
     ) {
-        UserProfile created = profileService.createProfile(username, email, firstName, lastName, phone);
+        UserProfile created = profileService.createProfile(userHash, userName);
         return ResponseEntity.ok("Profile created for user=" + created.getUsername());
     }
 
-    @GetMapping("/profile/{username}")
-    public ResponseEntity<?> getProfile(@PathVariable String username) {
-        UserProfile profile = profileService.getProfile(username);
+    @GetMapping("/profile/{userName}")
+    public ResponseEntity<?> getProfile(@PathVariable String userName) {
+        UserProfile profile = profileService.getProfile(userName);
         return ResponseEntity.ok(profile);
     }
 

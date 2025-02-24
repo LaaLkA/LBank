@@ -12,11 +12,11 @@ public class UserProfileService {
         this.restClient = restClient;
     }
 
-    public void createProfile(String username) {
+    public void createProfile(String userHash, String userName) {
         try {
             restClient
                     .post()
-                    .uri("/user/profile/create?username={username}", username)
+                    .uri("/user/profile/create?userHash={userHash}&username={userName}", userHash, userName)
                     .retrieve()
                     .body(String.class);
         }catch (Exception e) {

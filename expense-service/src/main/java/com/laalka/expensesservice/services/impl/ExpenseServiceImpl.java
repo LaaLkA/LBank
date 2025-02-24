@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class ExpenseServiceImpl implements ExpenseService {
@@ -21,31 +22,31 @@ public class ExpenseServiceImpl implements ExpenseService {
     }
 
     @Override
-    public List<ExpenseEntity> expensesList(Long userId) {
-        return expensesRepository.findByUserId(userId);
+    public List<ExpenseEntity> expensesList(String userHash) {
+        return expensesRepository.findByUserHash(userHash);
     }
 
     @Override
-    public ExpenseEntity createExpense(Long userId, Long receiverId, Double amount) {
-        return expensesRepository.save(new ExpenseEntity(userId, receiverId, amount, "No defined"));
+    public ExpenseEntity createExpense(String userHash, String receiverHash, Double amount) {
+        return expensesRepository.save(new ExpenseEntity(userHash, receiverHash, amount, "No defined"));
     }
 
     @Override
-    public ExpenseEntity createExpense(Long userId, Long receiverId, Double amount, String category) {
-        return expensesRepository.save(new ExpenseEntity(userId, receiverId, amount, category));
+    public ExpenseEntity createExpense(String userHash, String receiverHash, Double amount, String category) {
+        return expensesRepository.save(new ExpenseEntity(userHash, receiverHash, amount, category));
     }
 
     @Override
-    public ExpenseEntity updateExpense(Long expenseId, Long userId, Long receiverId, Double amount, String category) {
-        Optional<ExpenseEntity> optionalExpense = expensesRepository.findById(expenseId);
+    public ExpenseEntity updateExpense(UUID expenseId, String userHash, String receiverHash, Double amount, String category) {
+        Optional<ExpenseEntity> optionalExpense = Optional.ofNullable(expensesRepository.findById(expenseId));
         if (optionalExpense.isEmpty()) {
             throw new RuntimeException("Expense with id " + expenseId + " not found");
         }
 
         ExpenseEntity existingExpense = optionalExpense.get();
 
-        existingExpense.setUserId(existingExpense.getUserId());
-        existingExpense.setReceiverId(existingExpense.getReceiverId());
+        existingExpense.setUserHash(existingExpense.getUserHash());
+        existingExpense.setReceiverHash(existingExpense.getReceiverHash());
         existingExpense.setAmount(existingExpense.getAmount());
         existingExpense.setCategory(existingExpense.getCategory());
 
