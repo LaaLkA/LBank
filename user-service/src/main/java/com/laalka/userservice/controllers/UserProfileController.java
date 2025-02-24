@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("")
+@RequestMapping("/user")
 public class UserProfileController {
 
     private final UserProfileService profileService;
@@ -30,7 +30,7 @@ public class UserProfileController {
         return ResponseEntity.ok(profile);
     }
 
-    @PutMapping("/profile/{username}")
+    @PutMapping("/profile/{userName}")
     public ResponseEntity<?> updateProfile(
             @PathVariable String username,
             @RequestParam(required=false) String email,

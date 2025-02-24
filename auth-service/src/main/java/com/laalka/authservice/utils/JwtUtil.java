@@ -14,7 +14,7 @@ public class JwtUtil {
 
     private static final String SECRET = "805cdbf68d77b32222b2bcea6771fd6ee152e3388413fc63ecf4323377010a30";
 
-    private static final long EXPIRATION_TIME_MS = 24 * 60 * 60 * 1000;
+    private static final long EXPIRATION_TIME_MS = 3 * 1000;
 
     public String generateToken(String username, String role) {
         Date now = new Date();

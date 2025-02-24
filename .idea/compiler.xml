@@ -19,8 +19,8 @@
         </processorPath>
         <module name="auth-service" />
         <module name="expense-service" />
-        <module name="payment-service" />
         <module name="user-service" />
+        <module name="payment-service" />
         <module name="events-library" />
         <module name="web-service" />
       </profile>

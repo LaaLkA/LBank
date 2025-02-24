@@ -15,8 +15,8 @@ import java.util.UUID;
 @Component
 public class HashService {
 
-    public String userHash(UUID userId, String userName, LocalDateTime userCreated) {
-        String userData = userId.toString() + userName + userCreated;
+    public String userHash(String userName, LocalDateTime userCreated) {
+        String userData = userName + userCreated;
         return sha256(userData);
     }
 

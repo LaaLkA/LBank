@@ -1,17 +1,103 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Register</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Регистрация</title>
+    <style>
+        /* Общие стили */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+        }
+        /* Стили для логотипа в шапке */
+        .header {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+        .header img {
+            width: 80px; /* Размер логотипа: маленький */
+            height: auto;
+        }
+        /* Контейнер для формы регистрации */
+        .registration-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding-top: 100px; /* отступ сверху, чтобы не перекрывал логотип */
+        }
+        .registration-card {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+        }
+        .registration-card h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333333;
+        }
+        .registration-card form {
+            display: flex;
+            flex-direction: column;
+        }
+        .registration-card input[type="text"],
+        .registration-card input[type="password"] {
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            font-size: 16px;
+            color: #333333;
+        }
+        .registration-card input::placeholder {
+            color: #aaaaaa;
+        }
+        .registration-card button {
+            padding: 12px;
+            background-color: #007BFF;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .registration-card button:hover {
+            background-color: #0069d9;
+        }
+        .error-message {
+            color: red;
+            font-size: 14px;
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
-<h2>Register</h2>
-<form th:action="@{/register}" method="post">
-    <label>Username: <input type="text" name="username"/></label><br/>
-    <label>Password: <input type="password" name="password"/></label><br/>
-    <button type="submit">Register</button>
-</form>
-<div th:if="${error}">
-    <p style="color:red;">[[${error}]]</p>
+<!-- Шапка с логотипом (отображается слева сверху) -->
+<header class="header">
+    <img src="Logomini.svg" alt="Логотип">
+</header>
+
+<!-- Основной контейнер с формой регистрации -->
+<div class="registration-container">
+    <div class="registration-card">
+        <h2>Регистрация</h2>
+        <form th:action="@{/register}" method="post">
+            <input type="text" name="userName" placeholder="Имя пользователя" required>
+            <input type="password" name="password" placeholder="Пароль" required>
+            <button type="submit">Зарегистрироваться</button>
+            <div class="error-message" th:if="${error}">[[${error}]]</div>
+        </form>
+    </div>
 </div>
 </body>
 </html>

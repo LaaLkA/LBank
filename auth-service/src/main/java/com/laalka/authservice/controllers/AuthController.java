@@ -23,19 +23,19 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<?> register(
-            @RequestParam String username,
+            @RequestParam String userName,
             @RequestParam String password
     ) {
-        AuthUser user = authService.register(username, password, "ROLE_USER");
+        AuthUser user = authService.register(userName, password, "ROLE_USER");
         return ResponseEntity.ok("User " + user.getUsername() + " registered with ID=" + user.getId());
     }
 
     @PostMapping("/login")
     public ResponseEntity<?> login(
-            @RequestParam String username,
+            @RequestParam String userName,
             @RequestParam String password
     ) {
-        AuthUser user = authService.getUser(username);
+        AuthUser user = authService.getUser(userName);
         if (user == null) {
             return ResponseEntity.status(401).body("User not found");
         }
@@ -45,38 +45,38 @@ public class AuthController {
         String token = jwtUtil.generateToken(user.getUsername(), user.getRole());
         return ResponseEntity.ok(token);
     }
-    @GetMapping("/user/{username}")
-    public ResponseEntity<?> getUser(@PathVariable String username) {
-        AuthUser user = authService.getUser(username);
+    @GetMapping("/user/{userName}")
+    public ResponseEntity<?> getUser(@PathVariable String userName) {
+        AuthUser user = authService.getUser(userName);
         return ResponseEntity.ok(user);
     }
 
-    @PutMapping("/user/{username}/update")
+    @PutMapping("/user/{userName}/update")
     public ResponseEntity<?> updateUser(
-            @PathVariable String username,
+            @PathVariable String userName,
             @RequestParam(required = false) String newUsername,
             @RequestParam(required = false) String role
     ) {
-        AuthUser updated = authService.updateUser(username, newUsername, role);
+        AuthUser updated = authService.updateUser(userName, newUsername, role);
         return ResponseEntity.ok("Updated user " + updated.getUsername());
     }
 
-    @PostMapping("/user/{username}/change-password")
+    @PostMapping("/user/{userName}/change-password")
     public ResponseEntity<?> changePassword(
-            @PathVariable String username,
+            @PathVariable String userName,
             @RequestParam String oldPassword,
             @RequestParam String newPassword
     ) {
-        authService.changePassword(username, oldPassword, newPassword);
-        return ResponseEntity.ok("Password changed for user " + username);
+        authService.changePassword(userName, oldPassword, newPassword);
+        return ResponseEntity.ok("Password changed for user " + userName);
     }
 
-    @PostMapping("/user/{username}/reset-password")
+    @PostMapping("/user/{userName}/reset-password")
     public ResponseEntity<?> resetPassword(
-            @PathVariable String username,
+            @PathVariable String userName,
             @RequestParam String newPassword
     ) {
-        authService.resetPassword(username, newPassword);
-        return ResponseEntity.ok("Password reset for user " + username);
+        authService.resetPassword(userName, newPassword);
+        return ResponseEntity.ok("Password reset for user " + userName);
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Service
 public class AuthService {
@@ -36,8 +37,9 @@ public class AuthService {
         user.setPassword(passwordEncoder.encode(rawPassword));
         user.setRole(role);
         user.setTimeCreated(LocalDateTime.now());
-        user.setUserHash(hashService.userHash(user.getId(), username, user.getTimeCreated()));
-        userProfileService.createProfile(user.getUserHash(), username);
+        user.setUserHash(hashService.userHash(username, user.getTimeCreated()));
+
+        userProfileService.createProfile(user.getUserHash(), user.getUsername());
         balanceService.createBalance(user.getUserHash());
         return userRepository.save(user);
     }

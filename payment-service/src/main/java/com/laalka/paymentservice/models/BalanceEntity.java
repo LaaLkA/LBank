@@ -5,13 +5,13 @@ import lombok.Data;
 
 import java.util.UUID;
 
-@Data
 @Entity
 @Table(name="balances")
+@Data
 public class BalanceEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue()
     private UUID id;
 
     @Column(name="hash_user")

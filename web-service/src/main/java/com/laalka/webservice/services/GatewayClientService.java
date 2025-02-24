@@ -8,16 +8,15 @@ public class GatewayClientService {
 
     private final RestClient restClient;
 
-
     public GatewayClientService(RestClient restClient) {
         this.restClient = restClient;
     }
 
-    public String login(String username, String password) {
+    public String login(String userName, String password) {
         try {
             return restClient
                     .post()
-                    .uri("/auth/login?username={username}&password={password}", username, password)
+                    .uri("/auth/login?userName={userName}&password={password}", userName, password)
                     .retrieve()
                     .body(String.class);
         } catch (Exception e) {
@@ -25,11 +24,11 @@ public class GatewayClientService {
         }
     }
 
-    public void register(String username, String password) {
+    public void register(String userName, String password) {
         try {
             restClient
                     .post()
-                    .uri("/auth/register?username={username}&password={password}", username, password)
+                    .uri("/auth/register?userName={userName}&password={password}", userName, password)
                     .retrieve()
                     .body(String.class);
         }catch (Exception e) {
@@ -45,6 +44,5 @@ public class GatewayClientService {
                 .retrieve()
                 .body(String.class);
     }
-
 }
 

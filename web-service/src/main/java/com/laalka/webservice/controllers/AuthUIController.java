@@ -27,12 +27,12 @@ public class AuthUIController {
     }
 
     @PostMapping("/login")
-    public String doLogin(@RequestParam String username,
+    public String doLogin(@RequestParam String userName,
                           @RequestParam String password,
                           Model model,
                           HttpServletResponse response) {
         try {
-            String token = gatewayClient.login(username, password);
+            String token = gatewayClient.login(userName, password);
 
             Cookie cookie = new Cookie("JWT_TOKEN", token);
             cookie.setHttpOnly(true);
@@ -52,11 +52,11 @@ public class AuthUIController {
     }
 
     @PostMapping("/register")
-    public String doRegister(@RequestParam String username,
+    public String doRegister(@RequestParam String userName,
                              @RequestParam String password,
                              Model model) {
         try {
-            gatewayClient.register(username, password);
+            gatewayClient.register(userName, password);
             return "redirect:/login";
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());

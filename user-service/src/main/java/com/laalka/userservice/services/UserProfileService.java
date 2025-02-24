@@ -18,6 +18,7 @@ public class UserProfileService {
         }
         UserProfile profile = new UserProfile();
         profile.setUsername(userName);
+        profile.setUserHash(userHash);
         profile.setEmail(null);
         profile.setFirstName(null);
         profile.setLastName(null);

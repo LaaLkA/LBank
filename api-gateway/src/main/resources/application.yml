@@ -1,4 +1,5 @@
 server:
+  forward-headers-strategy: framework
   port: 8089
 
 spring:
@@ -15,8 +16,8 @@ spring:
           uri: lb://USER-SERVICE
           predicates:
             - Path=/user/**
-          filters:
-            - StripPrefix=1
+#          filters:
+#            - StripPrefix=1
         - id: expenses-service
           uri: lb://EXPENSES-SERVICE
           predicates:
