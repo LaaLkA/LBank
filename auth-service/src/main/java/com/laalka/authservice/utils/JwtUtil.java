@@ -1,5 +1,6 @@
 package com.laalka.authservice.utils;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -14,7 +15,7 @@ public class JwtUtil {
 
     private static final String SECRET = "805cdbf68d77b32222b2bcea6771fd6ee152e3388413fc63ecf4323377010a30";
 
-    private static final long EXPIRATION_TIME_MS = 3 * 1000;
+    private static final long EXPIRATION_TIME_MS = 24 * 60 * 60 * 1000;
 
     public String generateToken(String username, String role) {
         Date now = new Date();
@@ -29,6 +30,15 @@ public class JwtUtil {
                 .setExpiration(exp)
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
+    }
+    public String extractUsername(String token) {
+        Key key = Keys.hmacShaKeyFor(SECRET.getBytes(StandardCharsets.UTF_8));
+        Claims claims = Jwts.parserBuilder()
+                .setSigningKey(key)
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
+        return claims.getSubject();
     }
 
 }

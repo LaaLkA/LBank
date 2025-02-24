@@ -36,10 +36,10 @@ public class GatewayClientService {
         }
     }
 
-    public String getProtectedData(String token) {
+    public String getUserProfile(String token) {
         return restClient
                 .get()
-                .uri("/auth/protected-endpoint")
+                .uri("/user/")
                 .header("Authorization", "Bearer " + token)
                 .retrieve()
                 .body(String.class);

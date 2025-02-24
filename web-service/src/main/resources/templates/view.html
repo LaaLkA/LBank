@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Профиль</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<header>
+    <h1 th:text="'Добро пожаловать, ' + ${profile.username} + '!'"></h1>
+</header>
+<section>
+    <p>Баланс: <span th:text="${profile.balance}">0</span> руб.</p>
+</section>
+<nav>
+    <ul>
+        <li><a href="/expenses">Траты</a></li>
+        <li><a href="/transfer">Перевод</a></li>
+        <li><a href="/profile/edit">Редактировать профиль</a></li>
+    </ul>
+</nav>
+</body>
+</html>
