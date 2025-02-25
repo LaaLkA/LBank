@@ -16,7 +16,7 @@ public class GatewayClientService {
         try {
             return restClient
                     .post()
-                    .uri("/auth/login?userName={userName}&password={password}", userName, password)
+                    .uri("/auth/authorization/login?userName={userName}&password={password}", userName, password)
                     .retrieve()
                     .body(String.class);
         } catch (Exception e) {
@@ -28,7 +28,7 @@ public class GatewayClientService {
         try {
             restClient
                     .post()
-                    .uri("/auth/register?userName={userName}&password={password}", userName, password)
+                    .uri("/auth/authorization/register?userName={userName}&password={password}", userName, password)
                     .retrieve()
                     .body(String.class);
         }catch (Exception e) {

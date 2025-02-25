@@ -20,10 +20,10 @@ public class BalanceController {
         this.balanceService = balanceService;
     }
 
-    @PostMapping
-    public ResponseEntity<BalanceResponse> process(@NotNull @RequestBody BalanceRequest request) {
+    @GetMapping("/get")
+    public ResponseEntity<Double> process(@NotNull @RequestParam String userHash) {
         BalanceEntity balance = balanceService.findBalanceByHashUser(
-                request.getUserHash()
+                userHash
         );
 
         if (balance == null) {
@@ -31,7 +31,7 @@ public class BalanceController {
                     HttpStatus.NOT_FOUND, "Balance not found"
             );
         }
-        return ResponseEntity.ok(new BalanceResponse(balance.getBalance()));
+        return ResponseEntity.ok(balance.getBalance());
     }
 
     @PostMapping("/create")

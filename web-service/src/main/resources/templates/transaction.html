@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Перевод</title>
+</head>
+<body>
+<header>
+</header>
+<div>
+    <h2>Перевод</h2>
+    <form th:action="@{/transfer}" method="post">
+        <input name="receiverName" placeholder="Имя пользователя получателя" required>
+        <input name="amount" placeholder="Имя пользователя получателя" required>
+        <button type="submit">Войти</button>
+        <div class="error" th:if="${error}">[[${error}]]</div>
+    </form>
+
+</div>
+</body>
+</html>

@@ -5,6 +5,7 @@ import io.jsonwebtoken.Claims;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpCookie;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
@@ -30,17 +31,24 @@ public class GlobalJwtFilterConfiguration {
             ServerHttpRequest request = exchange.getRequest();
 
             String path = request.getURI().getPath();
-            if (path.startsWith("/auth/")) {
+            if (path.startsWith("/auth/") || path.startsWith("/authorization/")) {
                 return chain.filter(exchange);
             }
 
             String authHeader = request.getHeaders().getFirst(HttpHeaders.AUTHORIZATION);
-            if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            String token = null;
+            if (authHeader != null && authHeader.startsWith("Bearer ")) {
+                token = authHeader.substring(7);
+            } else {
+                HttpCookie jwtCookie = request.getCookies().getFirst("JWT_TOKEN");
+                if (jwtCookie != null) {
+                    token = jwtCookie.getValue();
+                }
+            }
+            if (token == null) {
                 exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
                 return exchange.getResponse().setComplete();
             }
-
-            String token = authHeader.substring(7);
 
             try {
                 Claims claims = jwtUtil.parseToken(token);

@@ -1,5 +1,6 @@
 package com.laalka.webservice.services;
 
+import com.laalka.webservice.dto.WebUser;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
@@ -7,21 +8,23 @@ import org.springframework.web.client.RestClient;
 @Service
 public class ProfileService {
 
-    private final GatewayClientService gatewayClientService;
     private final RestClient restClient;
 
     public ProfileService(GatewayClientService gatewayClientService, RestClient restClient) {
-        this.gatewayClientService = gatewayClientService;
         this.restClient = restClient;
     }
 
-    public String getUserName(String jwtToken) {
-        ResponseEntity<String> response = restClient
+    public String getUserName(String token) {
+        WebUser user = getWebUser(token);
+        return user.getUsername();
+    }
+
+    private WebUser getWebUser(String jwtToken) {
+        return restClient
                 .get()
-                .uri("/user/userName")
+                .uri("/auth/user/me")
                 .header("Authorization", "Bearer " + jwtToken)
                 .retrieve()
-                .body(String.class);
-        return response.getBody();
+                .body(WebUser.class);
     }
 }

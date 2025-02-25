@@ -63,9 +63,6 @@ public class AuthUIController {
             return "auth/register";
         }
     }
-    @GetMapping("/home")
-    public String home(){
-        return "home";
-    }
+
 }
 

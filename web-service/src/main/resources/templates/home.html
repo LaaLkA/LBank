@@ -4,14 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Домашняя страница</title>
+    <!-- Подключаем jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
 <body>
 <header>
     <h1 th:text="'Добро пожаловать, ' + ${userName} + '!'"></h1>
 </header>
 <section class="balance-section">
-    <p>Ваш баланс: <span th:text="${balance}">0</span> руб.</p>
+    <p>Ваш баланс: <span id="balance" th:text="${balance}">0</span> руб.</p>
 </section>
-
 <nav>
     <ul class="menu">
         <li><a href="/expenses">Траты</a></li>
@@ -19,5 +21,39 @@
         <li><a href="/profile">Профиль</a></li>
     </ul>
 </nav>
+
+<script>
+    // Функция для обновления баланса
+    function updateBalance() {
+        // Здесь можно подставить динамически имя пользователя, например, через Thymeleaf
+        var userName = /*[[${userName}]]*/ "asd";
+
+        $.ajax({
+            url: '/auth/balance', // эндпоинт для получения баланса
+            type: 'GET',
+            data: { userName: userName },
+            headers: {
+                // Если требуется авторизация, можно добавить заголовок, например:
+                'Authorization': 'Bearer ' + 'ВАШ_TOKEN'
+            },
+            success: function(data) {
+                // data ожидается как число (Double) или объект, из которого можно извлечь баланс
+                // Обновляем элемент с балансом
+                $('#balance').text(data);
+            },
+            error: function(err) {
+                console.error('Ошибка при обновлении баланса', err);
+            }
+        });
+    }
+
+    // Обновлять баланс каждые 10 секунд (10000 мс)
+    setInterval(updateBalance, 10000);
+
+    // Можно вызвать сразу при загрузке страницы
+    $(document).ready(function() {
+        updateBalance();
+    });
+</script>
 </body>
 </html>

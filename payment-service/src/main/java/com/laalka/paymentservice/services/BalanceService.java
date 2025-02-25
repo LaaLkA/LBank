@@ -18,7 +18,7 @@ public class BalanceService {
     public BalanceEntity createBalance(String userHash) {
         BalanceEntity balance = new BalanceEntity();
         balance.setHashUser(userHash);
-        balance.setBalance(0.0);
+        balance.setBalance(50.0);
         return balanceRepository.save(balance);
     }
 }

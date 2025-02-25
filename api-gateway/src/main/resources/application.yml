@@ -32,8 +32,15 @@ spring:
           uri: lb://AUTH-SERVICE
           predicates:
             - Path=/auth/**
+          filters:
+            - StripPrefix=1
 
 eureka:
   client:
     service-url:
       defaultZone: http://eureka-server:8761/eureka
+
+logging:
+  level:
+    org:
+      springframework: DEBUG
