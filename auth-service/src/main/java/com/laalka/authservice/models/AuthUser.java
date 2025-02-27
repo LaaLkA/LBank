@@ -22,10 +22,4 @@ public class AuthUser {
 
     @Column(nullable = false)
     private String role;
-
-    @Column(nullable = false)
-    private LocalDateTime timeCreated;
-
-    @Column(nullable = false)
-    private String userHash;
 }

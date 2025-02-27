@@ -1,7 +1,7 @@
 package com.laalka.authservice.services;
 
-import com.laalka.authservice.api.BalanceService;
-import com.laalka.authservice.api.UserProfileService;
+import com.laalka.authservice.api.service.BalanceService;
+import com.laalka.authservice.api.service.UserProfileService;
 import com.laalka.authservice.models.AuthUser;
 import com.laalka.authservice.repositories.AuthUserRepository;
 import com.laalka.authservice.utils.HashService;
@@ -9,7 +9,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Service
 public class AuthService {

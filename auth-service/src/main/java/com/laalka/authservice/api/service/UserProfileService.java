@@ -1,4 +1,4 @@
-package com.laalka.authservice.api;
+package com.laalka.authservice.api.service;
 
 import com.laalka.authservice.utils.JwtUtil;
 import org.springframework.stereotype.Service;

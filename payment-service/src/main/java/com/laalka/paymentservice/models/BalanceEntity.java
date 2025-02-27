@@ -14,8 +14,8 @@ public class BalanceEntity {
     @GeneratedValue()
     private UUID id;
 
-    @Column(name="hash_user")
-    private String hashUser;
+    @Column(name="username")
+    private String userName;
 
     @Column(name="balance")
     private Double balance;

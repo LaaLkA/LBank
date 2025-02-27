@@ -1,4 +1,4 @@
-package com.laalka.authservice.api;
+package com.laalka.authservice.api.service;
 
 import com.laalka.authservice.models.AuthUser;
 import com.laalka.authservice.repositories.AuthUserRepository;
@@ -19,12 +19,12 @@ public class BalanceService {
 
     private final RestClient restClient;
 
-    public void createBalance(String userHash) {
+    public void createBalance(String userName) {
         String systemToken = jwtUtil.generateToken("systemUser", "ROLE_SYSTEM");
         try {
             restClient
                     .post()
-                    .uri("/payment/balance/create?userHash={userHash}", userHash)
+                    .uri("/payment/balance/create?userHash={userHash}", userName)
                     .header("Authorization", "Bearer " + systemToken)
                     .retrieve()
                     .body(String.class);
@@ -38,7 +38,7 @@ public class BalanceService {
         AuthUser user = authUserRepository.findByUsername(username);
         return restClient
                 .get()
-                .uri("/payment/balance/get?userHash={userHash}", user.getUserHash())
+                .uri("/payment/balance/get?userHash={userHash}", user.getUsername())
                 .header("Authorization", "Bearer " + systemToken)
                 .retrieve()
                 .body(Double.class);

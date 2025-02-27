@@ -1,14 +1,14 @@
-package com.laalka.webservice.services;
+package com.laalka.webservice.api.services;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 
 @Service
-public class GatewayClientService {
+public class AuthService {
 
     private final RestClient restClient;
 
-    public GatewayClientService(RestClient restClient) {
+    public AuthService(RestClient restClient) {
         this.restClient = restClient;
     }
 
@@ -36,13 +36,5 @@ public class GatewayClientService {
         }
     }
 
-    public String getUserProfile(String token) {
-        return restClient
-                .get()
-                .uri("/user/")
-                .header("Authorization", "Bearer " + token)
-                .retrieve()
-                .body(String.class);
-    }
 }
 

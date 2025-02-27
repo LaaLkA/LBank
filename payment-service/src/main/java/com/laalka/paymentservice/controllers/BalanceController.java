@@ -20,11 +20,9 @@ public class BalanceController {
         this.balanceService = balanceService;
     }
 
-    @GetMapping("/get")
-    public ResponseEntity<Double> process(@NotNull @RequestParam String userHash) {
-        BalanceEntity balance = balanceService.findBalanceByHashUser(
-                userHash
-        );
+    @PostMapping("/get")
+    public ResponseEntity<Double> process(@RequestBody String userName) {
+        BalanceEntity balance = balanceService.getBalance(userName);
 
         if (balance == null) {
             throw new org.springframework.web.server.ResponseStatusException(
@@ -35,8 +33,8 @@ public class BalanceController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<String> create(@NotNull @RequestParam String userHash) {
-        balanceService.createBalance(userHash);
+    public ResponseEntity<String> create(@NotNull @RequestBody BalanceRequest req) {
+        balanceService.createBalance(req.getUserName());
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }

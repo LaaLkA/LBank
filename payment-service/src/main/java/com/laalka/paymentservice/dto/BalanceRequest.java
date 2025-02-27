@@ -14,9 +14,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class BalanceRequest {
 
-    @NotNull
-    private String userHash;
+    private String hashUser;
+    private String userName;
 
-    public BalanceRequest() {
-    }
 }

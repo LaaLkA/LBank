@@ -29,16 +29,16 @@ public class PaymentService {
 
 
     @Transactional
-    public void transaction(String senderHash,
-                            String receiverHash,
+    public void transaction(String sender,
+                            String receiver,
                             Double amount) {
 
-        BalanceEntity senderBalance = balanceRepository.findBalanceByHashUser(senderHash);
+        BalanceEntity senderBalance = balanceRepository.findBalanceByUserName(sender);
         if (senderBalance == null) {
             throw new RuntimeException("Sender not found");
         }
 
-        BalanceEntity receiverBalance = balanceRepository.findBalanceByHashUser(receiverHash);
+        BalanceEntity receiverBalance = balanceRepository.findBalanceByUserName(receiver);
         if (receiverBalance == null) {
             throw new RuntimeException("Receiver not found");
         }
@@ -52,25 +52,25 @@ public class PaymentService {
         balanceRepository.save(senderBalance);
         balanceRepository.save(receiverBalance);
 
-        PaymentEvent event = new PaymentEvent(
-                hashService.transactionHash(senderHash, receiverHash),
-                senderHash,
-                receiverHash,
-                amount,
-                LocalDateTime.now().toString()
-        );
+//        PaymentEvent event = new PaymentEvent(
+//                hashService.transactionHash(sender, receiver),
+//                sender,
+//                receiver,
+//                amount,
+//                LocalDateTime.now().toString()
+//        );
 
-        String eventJson = jsonService.serializeToJson(event);
-
-        OutboxEvent outboxEvent = OutboxEvent.builder()
-                .eventType("PAYMENT_EVENT")
-                .aggregateId(senderHash.toString())
-                .payload(eventJson)
-                .createdAt(LocalDateTime.now())
-                .processed(false)
-                .build();
-
-        outboxEventRepository.save(outboxEvent);
+//        String eventJson = jsonService.serializeToJson(event);
+//
+//        OutboxEvent outboxEvent = OutboxEvent.builder()
+//                .eventType("PAYMENT_EVENT")
+//                .aggregateId(sender.toString())
+//                .payload(eventJson)
+//                .createdAt(LocalDateTime.now())
+//                .processed(false)
+//                .build();
+//
+//        outboxEventRepository.save(outboxEvent);
     }
 
 }

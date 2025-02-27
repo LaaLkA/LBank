@@ -1,12 +1,10 @@
 package com.laalka.authservice.controllers;
 
-import com.laalka.authservice.api.BalanceService;
-import com.laalka.authservice.api.UserProfileService;
-import com.laalka.authservice.models.AuthUser;
+import com.laalka.authservice.api.service.BalanceService;
+import com.laalka.authservice.api.service.UserProfileService;
 import com.laalka.authservice.services.AuthService;
 import com.laalka.authservice.utils.JwtUtil;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

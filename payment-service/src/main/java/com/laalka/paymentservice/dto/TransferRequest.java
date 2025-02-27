@@ -15,16 +15,13 @@ import java.time.LocalDateTime;
 public class TransferRequest {
 
     @NotNull
-    private String senderHash;
+    private String sender;
 
     @NotNull
     @Positive
     private Double amount;
 
     @NotNull
-    private String receiverHash;
+    private String receiver;
 
-    public TransferRequest() {
-
-    }
 }
