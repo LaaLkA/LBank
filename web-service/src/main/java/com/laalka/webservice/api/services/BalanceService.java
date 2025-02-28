@@ -14,10 +14,11 @@ public class BalanceService {
         this.restClient = restClient;
     }
 
-    public ResponseEntity<Double> getBalance(String userName) {
+    public ResponseEntity<Double> getBalance(String userName, String token) {
         return restClient
                 .post()
                 .uri("/payment/balance/get")
+                .header("Authorization", "Bearer " + token)
                 .body(Map.of(
                         "userName", userName))
                 .retrieve()

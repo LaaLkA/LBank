@@ -21,8 +21,8 @@ public class BalanceController {
     }
 
     @PostMapping("/get")
-    public ResponseEntity<Double> process(@RequestBody String userName) {
-        BalanceEntity balance = balanceService.getBalance(userName);
+    public ResponseEntity<Double> process(@RequestBody BalanceRequest request) {
+        BalanceEntity balance = balanceService.getBalance(request.getUserName());
 
         if (balance == null) {
             throw new org.springframework.web.server.ResponseStatusException(

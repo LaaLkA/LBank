@@ -3,7 +3,9 @@ package com.laalka.paymentservice.repositories;
 import com.laalka.paymentservice.models.BalanceEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface BalanceRepository extends JpaRepository<BalanceEntity, Long> {
+import java.util.UUID;
+
+public interface BalanceRepository extends JpaRepository<BalanceEntity, UUID> {
 //    BalanceEntity findBalanceByHashUser(String hashUser);
 
     BalanceEntity findBalanceByUserName(String userName);

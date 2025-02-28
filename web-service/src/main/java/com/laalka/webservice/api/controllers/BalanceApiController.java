@@ -3,10 +3,7 @@ package com.laalka.webservice.api.controllers;
 import com.laalka.webservice.api.dto.BalanceRequest;
 import com.laalka.webservice.api.services.BalanceService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/balance")
@@ -18,7 +15,11 @@ public class BalanceApiController {
     }
 
     @PostMapping("/get")
-    public ResponseEntity<Double> getBalance(@RequestBody BalanceRequest req) {
-        return ResponseEntity.ok(balanceService.getBalance(req.getUserName()).getBody());
+    public ResponseEntity<Double> getBalance(
+            @CookieValue(name = "USER_NAME", required = false) String userName,
+            @CookieValue(name = "JWT_TOKEN", required = false) String token) {
+        System.out.println(userName);
+        System.out.println(token);
+        return balanceService.getBalance(userName, token);
     }
 }

@@ -14,7 +14,7 @@ public class BalanceEntity {
     @GeneratedValue()
     private UUID id;
 
-    @Column(name="username")
+    @Column(name="userName")
     private String userName;
 
     @Column(name="balance")
