@@ -22,18 +22,18 @@ public class ExpenseServiceImpl implements ExpenseService {
     }
 
     @Override
-    public List<ExpenseEntity> expensesList(String userHash) {
-        return expensesRepository.findByUserHash(userHash);
+    public List<ExpenseEntity> expensesList(String sender) {
+        return expensesRepository.findExpenseBySender(sender);
     }
 
-    @Override
-    public ExpenseEntity createExpense(String userHash, String receiverHash, Double amount) {
-        return expensesRepository.save(new ExpenseEntity(userHash, receiverHash, amount, "No defined"));
-    }
+//    @Override
+//    public ExpenseEntity createExpense(String userHash, String receiverHash, Double amount) {
+//        return expensesRepository.save(new ExpenseEntity(userHash, receiverHash, amount, "No defined"));
+//    }
 
     @Override
-    public ExpenseEntity createExpense(String userHash, String receiverHash, Double amount, String category) {
-        return expensesRepository.save(new ExpenseEntity(userHash, receiverHash, amount, category));
+    public void createExpense(ExpenseEntity expense) {
+        expensesRepository.save(expense);
     }
 
     @Override
@@ -45,8 +45,8 @@ public class ExpenseServiceImpl implements ExpenseService {
 
         ExpenseEntity existingExpense = optionalExpense.get();
 
-        existingExpense.setUserHash(existingExpense.getUserHash());
-        existingExpense.setReceiverHash(existingExpense.getReceiverHash());
+//        existingExpense.setUserHash(existingExpense.getUserHash());
+//        existingExpense.setReceiverHash(existingExpense.getReceiverHash());
         existingExpense.setAmount(existingExpense.getAmount());
         existingExpense.setCategory(existingExpense.getCategory());
 

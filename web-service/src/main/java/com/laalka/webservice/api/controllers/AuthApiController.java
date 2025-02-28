@@ -6,10 +6,9 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @RequestMapping()
 public class AuthApiController {
 
@@ -20,7 +19,6 @@ public class AuthApiController {
     }
 
     @PostMapping("/login")
-    @ResponseBody
     public ResponseEntity<?> doLogin(@RequestBody AuthRequest authRequest,
                                      HttpServletResponse response) {
         try {
@@ -33,6 +31,10 @@ public class AuthApiController {
             cookie.setHttpOnly(true);
             cookie.setPath("/");
             response.addCookie(cookie);
+
+            Cookie userNameCookie = new Cookie("USER_NAME", authRequest.getUserName());
+            userNameCookie.setPath("/");
+            response.addCookie(userNameCookie);
 
             return ResponseEntity.ok("{\"status\":\"ok\"}");
         } catch (Exception e) {

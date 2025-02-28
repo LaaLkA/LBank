@@ -1,8 +1,10 @@
-package com.laalka.authservice.api.service;
+package com.laalka.authservice.api.services;
 
 import com.laalka.authservice.utils.JwtUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
+
+import java.util.Map;
 
 @Service
 public class UserProfileService {
@@ -15,13 +17,15 @@ public class UserProfileService {
         this.jwtUtil = jwtUtil;
     }
 
-    public void createProfile(String userHash, String userName) {
+    public void createProfile(String userName) {
         String systemToken = jwtUtil.generateToken("systemUser", "ROLE_SYSTEM");
         try {
             restClient
                     .post()
-                    .uri("/user/profile/create?userHash={userHash}&userName={userName}", userHash, userName)
+                    .uri("/user/profile/create")
                     .header("Authorization", "Bearer " + systemToken)
+                    .body(Map.of(
+                            "userName", userName))
                     .retrieve()
                     .body(String.class);
         }catch (Exception e) {

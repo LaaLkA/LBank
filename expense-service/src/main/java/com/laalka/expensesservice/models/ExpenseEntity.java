@@ -1,23 +1,27 @@
 package com.laalka.expensesservice.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name="expenses")
 public class ExpenseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue()
     private UUID id;
 
     @Column(name="user_id")
-    private String userHash;
+    private String sender;
 
     @Column(name="receiver_id")
-    private String receiverHash;
+    private String receiver;
 
     @Column(name = "amount")
     private Double amount;
@@ -25,21 +29,8 @@ public class ExpenseEntity {
     @Column(name = "category")
     private String category;
 
-    @Column(name = "transaction_id", unique = true)
-    private String transactionId;
+//    @Column(name = "transaction_id", unique = true)
+//    private String transactionId;
 
-    public ExpenseEntity() {}
-    public ExpenseEntity(String userHash, String receiverHash, Double amount) {
-        this.userHash = userHash;
-        this.receiverHash = receiverHash;
-        this.amount = amount;
-        this.category = "No defined";
-    }
-    public ExpenseEntity(String userHash, String receiverHash, Double amount, String category) {
-        this.userHash = userHash;
-        this.receiverHash = receiverHash;
-        this.amount = amount;
-        this.category = category;
-    }
 
 }

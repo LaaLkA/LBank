@@ -7,5 +7,4 @@ import java.time.LocalDateTime;
 public class WebUser {
     private String username;
     private String role;
-    private LocalDateTime timeCreated;
 }

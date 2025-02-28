@@ -1,7 +1,7 @@
 package com.laalka.paymentservice.services;
 
+import com.laalka.paymentservice.api.services.ExpenseApiService;
 import com.laalka.paymentservice.models.BalanceEntity;
-import com.laalka.paymentservice.models.OutboxEvent;
 import com.laalka.paymentservice.repositories.BalanceRepository;
 import com.laalka.paymentservice.repositories.OutboxEventRepository;
 import com.laalka.paymentservice.utils.HashService;
@@ -9,14 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
-
-import com.laalka.events.PaymentEvent;
-
 @Service
 public class PaymentService {
     @Autowired
     private BalanceRepository balanceRepository;
+
+    @Autowired
+    private ExpenseApiService expenseApiService;
 
     @Autowired
     private OutboxEventRepository outboxEventRepository;
@@ -31,7 +30,8 @@ public class PaymentService {
     @Transactional
     public void transaction(String sender,
                             String receiver,
-                            Double amount) {
+                            Double amount,
+                            String token) {
 
         BalanceEntity senderBalance = balanceRepository.findBalanceByUserName(sender);
         if (senderBalance == null) {
@@ -51,7 +51,7 @@ public class PaymentService {
         receiverBalance.setBalance(receiverBalance.getBalance() + amount);
         balanceRepository.save(senderBalance);
         balanceRepository.save(receiverBalance);
-
+        expenseApiService.commitPayment(sender,receiver, amount, token);
 //        PaymentEvent event = new PaymentEvent(
 //                hashService.transactionHash(sender, receiver),
 //                sender,

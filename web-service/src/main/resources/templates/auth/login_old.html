@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Авторизация</title>
+    <link rel="stylesheet" th:href="@{/css/loginStyle.css}">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: #f0f2f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            border-radius: 60px;
+            box-shadow: 5px 15px 40px 15px rgba(0, 0, 0, 0.25);
+            background: rgb(255, 255, 255);
+            padding: 40px 30px;
+            width: 360px;
+            text-align: center;
+        }
+
+        .login-container img {
+            max-width: 300px;
+            max-height: 100px;
+            left: 563px;
+            right: 563px;
+            top: 291px;
+            bottom: 583px;
+        }
+
+        .login-container h2 {
+            margin-bottom: 10px;
+            font-family: 'Arial', sans-serif;
+            color: #333333;
+            font-size: 24px;
+        }
+
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            border-radius: 45px;
+            box-shadow: 5px 5px 40px 5px rgba(0, 0, 0, 0.25);
+            background: rgb(251, 251, 251);
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #cccccc;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        .login-container button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px;
+            margin-top: 5px;
+            border: none;
+            border-radius: 45px;
+            width: 50%;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .login-container button:hover {
+            background-color: #45a049;
+        }
+
+        .login-container .error {
+            color: red;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+    </style>
+
+</head>
+<body>
+<div class="login-container">
+    <img src="Logo.png" alt="Логотип">
+    <h2>Вход</h2>
+    <form th:action="@{/login}" method="post">
+        <input type="text" name="userName" placeholder="Имя пользователя" required>
+        <input type="password" name="password" placeholder="Пароль" required>
+        <button type="submit">Войти</button>
+        <div class="error" th:if="${error}">[[${error}]]</div>
+    </form>
+</div>
+</body>
+</html>

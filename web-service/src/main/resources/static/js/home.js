@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => {
                 // Проверяем, не вернулся ли код ошибки
                 if (!response.ok) {
-                    return response.text().then(text => { throw new Error(text); });
+                    return response.text().then(text => { throw new Error(text ); });
                 }
                 // Если всё OK, сервер вернёт Double. При парсе из JSON получится число
                 return response.json();

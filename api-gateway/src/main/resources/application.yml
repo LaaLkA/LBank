@@ -16,12 +16,14 @@ spring:
           uri: lb://USER-SERVICE
           predicates:
             - Path=/user/**
-#          filters:
-#            - StripPrefix=1
+          filters:
+            - StripPrefix=1
         - id: expenses-service
           uri: lb://EXPENSES-SERVICE
           predicates:
             - Path=/expenses/**
+          filters:
+            - StripPrefix=1
         - id: payment-service
           uri: lb://PAYMENT-SERVICE
           predicates:

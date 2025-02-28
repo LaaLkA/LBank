@@ -1,7 +1,7 @@
 package com.laalka.authservice.services;
 
-import com.laalka.authservice.api.service.BalanceService;
-import com.laalka.authservice.api.service.UserProfileService;
+import com.laalka.authservice.api.services.BalanceService;
+import com.laalka.authservice.api.services.UserProfileService;
 import com.laalka.authservice.models.AuthUser;
 import com.laalka.authservice.repositories.AuthUserRepository;
 import com.laalka.authservice.utils.HashService;
@@ -38,8 +38,8 @@ public class AuthService {
         user.setTimeCreated(LocalDateTime.now());
         user.setUserHash(hashService.userHash(username, user.getTimeCreated()));
 
-        userProfileService.createProfile(user.getUserHash(), user.getUsername());
-        balanceService.createBalance(user.getUserHash());
+        userProfileService.createProfile(user.getUsername());
+        balanceService.createBalance(user.getUsername());
         return userRepository.save(user);
     }
 

@@ -45,6 +45,7 @@ public class AuthController {
         String token = jwtUtil.generateToken(user.getUsername(), user.getRole());
         return ResponseEntity.ok(token);
     }
+
     @GetMapping("/user/{userName}")
     public ResponseEntity<?> getUser(@PathVariable String userName) {
         AuthUser user = authService.getUser(userName);

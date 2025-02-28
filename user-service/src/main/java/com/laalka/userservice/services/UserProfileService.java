@@ -12,13 +12,12 @@ public class UserProfileService {
         this.repository = repository;
     }
 
-    public UserProfile createProfile(String userHash, String userName) {
+    public UserProfile createProfile(String userName) {
         if (repository.findByUsername(userName) != null) {
             throw new RuntimeException("Profile already exists for username=" + userName);
         }
         UserProfile profile = new UserProfile();
         profile.setUsername(userName);
-        profile.setUserHash(userHash);
         profile.setEmail(null);
         profile.setFirstName(null);
         profile.setLastName(null);

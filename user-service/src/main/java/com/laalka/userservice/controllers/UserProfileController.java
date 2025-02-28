@@ -1,12 +1,13 @@
 package com.laalka.userservice.controllers;
 
+import com.laalka.userservice.dto.RegistrationRequest;
 import com.laalka.userservice.models.UserProfile;
 import com.laalka.userservice.services.UserProfileService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/profile")
 public class UserProfileController {
 
     private final UserProfileService profileService;
@@ -15,22 +16,20 @@ public class UserProfileController {
         this.profileService = profileService;
     }
 
-    @PostMapping("/profile/create")
+    @PostMapping("/create")
     public ResponseEntity<?> createProfile(
-            @RequestParam String userHash,
-            @RequestParam String userName
-    ) {
-        UserProfile created = profileService.createProfile(userHash, userName);
+            @RequestBody RegistrationRequest req) {
+        UserProfile created = profileService.createProfile(req.getUserName());
         return ResponseEntity.ok("Profile created for user=" + created.getUsername());
     }
 
-    @GetMapping("/profile/{userName}")
+    @GetMapping("/{userName}")
     public ResponseEntity<?> getProfile(@PathVariable String userName) {
-        UserProfile profile = profileService.getProfile(userName);
-        return ResponseEntity.ok(profile);
+        UserProfile UserProfile = profileService.getProfile(userName);
+        return ResponseEntity.ok(UserProfile);
     }
 
-    @PutMapping("/profile/{userName}")
+    @PutMapping("/{userName}")
     public ResponseEntity<?> updateProfile(
             @PathVariable String username,
             @RequestParam(required=false) String email,
@@ -42,7 +41,7 @@ public class UserProfileController {
         return ResponseEntity.ok("Profile updated for user=" + updated.getUsername());
     }
 
-    @DeleteMapping("/profile/{username}")
+    @DeleteMapping("/{username}")
     public ResponseEntity<?> deleteProfile(@PathVariable String username) {
         profileService.deleteProfile(username);
         return ResponseEntity.ok("Profile deleted for user=" + username);

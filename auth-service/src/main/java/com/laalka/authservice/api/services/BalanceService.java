@@ -1,20 +1,20 @@
-package com.laalka.authservice.api.service;
+package com.laalka.authservice.api.services;
 
-import com.laalka.authservice.models.AuthUser;
 import com.laalka.authservice.repositories.AuthUserRepository;
 import com.laalka.authservice.utils.JwtUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 
+import java.util.Map;
+
 @Service
 public class BalanceService {
+
     private final JwtUtil jwtUtil;
-    private final AuthUserRepository authUserRepository;
 
     public BalanceService(RestClient restClient, JwtUtil jwtUtil, AuthUserRepository authUserRepository) {
         this.restClient = restClient;
         this.jwtUtil = jwtUtil;
-        this.authUserRepository = authUserRepository;
     }
 
     private final RestClient restClient;
@@ -24,8 +24,10 @@ public class BalanceService {
         try {
             restClient
                     .post()
-                    .uri("/payment/balance/create?userHash={userHash}", userName)
+                    .uri("/payment/balance/create")
                     .header("Authorization", "Bearer " + systemToken)
+                    .body(Map.of(
+                            "userName", userName))
                     .retrieve()
                     .body(String.class);
         }catch (Exception e) {
@@ -33,14 +35,4 @@ public class BalanceService {
         }
     }
 
-    public Double getBalance(String username) {
-        String systemToken = jwtUtil.generateToken("systemUser", "ROLE_SYSTEM");
-        AuthUser user = authUserRepository.findByUsername(username);
-        return restClient
-                .get()
-                .uri("/payment/balance/get?userHash={userHash}", user.getUsername())
-                .header("Authorization", "Bearer " + systemToken)
-                .retrieve()
-                .body(Double.class);
-    }
 }

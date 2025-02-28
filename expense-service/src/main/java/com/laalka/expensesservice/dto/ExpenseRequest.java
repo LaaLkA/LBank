@@ -12,11 +12,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ExpenseRequest {
-    @NotNull
-    private String userHash;
 
-    private String receiverHash;
+    private String sender;
+    private String receiver;
     private Double amount;
-    private String category;
 
 }

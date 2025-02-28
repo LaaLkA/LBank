@@ -9,8 +9,8 @@ import java.util.UUID;
 
 @Repository
 public interface ExpensesRepository extends JpaRepository<ExpenseEntity, Long> {
-    ExpenseEntity findByReceiverHash(String receiverHash);
-    List<ExpenseEntity> findByUserHash(String userHash);
-    boolean existsByTransactionId(String transactionId);
+//    ExpenseEntity findByReceiverHash(String receiverHash);
+    List<ExpenseEntity> findExpenseBySender(String sender);
+//    boolean existsByTransactionId(String transactionId);
     ExpenseEntity findById(UUID id);
 }
