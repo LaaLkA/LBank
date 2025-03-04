@@ -28,6 +28,17 @@ public class PagesController {
         return "home";
     }
 
+    @GetMapping("/income")
+    public String income(
+            @CookieValue(name = "JWT_TOKEN", required = false) String token){
+        if (token == null) {
+            return "redirect:/login";
+        }
+        return "income";
+    }
+
+
+
     @GetMapping("/transfer")
     public String transfer(
             @CookieValue(name = "JWT_TOKEN", required = false) String token) {

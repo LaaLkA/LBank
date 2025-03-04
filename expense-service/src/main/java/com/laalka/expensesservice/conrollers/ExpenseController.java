@@ -42,6 +42,17 @@ public class ExpenseController {
         return ResponseEntity.ok(responseList);
     }
 
+    @GetMapping("/userIncome/{receiver}")
+    public ResponseEntity<List<ExpenseResponse>> getExpensesByReceiver(@PathVariable String receiver) {
+        List<ExpenseEntity> entities = expenseServiceImpl.incomesList(receiver);
+
+        List<ExpenseResponse> responseList = entities.stream()
+                .map(expenseMapper::fromEntityToResponse)
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(responseList);
+    }
+
     /**
      * Создание новой сущности траты
      * @param request
@@ -49,21 +60,6 @@ public class ExpenseController {
      */
     @PostMapping("/create")
     public ResponseEntity<ExpenseResponse> createExpense(@RequestBody ExpenseRequest request) {
-//        ExpenseEntity createdEntity;
-//        if (request.getCategory() == null || request.getCategory().isBlank()) {
-//            createdEntity = expenseService.createExpense(
-//                    request.getUserHash(),
-//                    request.getReceiverHash(),
-//                    request.getAmount()
-//            );
-//        } else {
-//            createdEntity = expenseService.createExpense(
-//                    request.getUserHash(),
-//                    request.getReceiverHash(),
-//                    request.getAmount(),
-//                    request.getCategory()
-//            );
-//        }
 
         ExpenseEntity createdEntity = new ExpenseEntity();
         createdEntity.setSender(request.getSender());
@@ -74,31 +70,6 @@ public class ExpenseController {
         return ResponseEntity.ok(expenseMapper.fromEntityToResponse(createdEntity));
     }
 
-//    /**
-//     * Обновление текущей сущности траты
-//     * @param expenseId
-//     * @param request
-//     * @return
-//     */
-//    @PutMapping("/update/{expenseId}")
-//    public ResponseEntity<ExpenseResponse> updateExpense(@PathVariable UUID expenseId,
-//                                                         @RequestBody @Valid ExpenseRequest request) {
-//        ExpenseEntity updatedEntity = expenseService.updateExpense(
-//                expenseId,
-//                request.getUserHash(),
-//                request.getReceiverHash(),
-//                request.getAmount(),
-//                request.getCategory()
-//        );
-//        ExpenseResponse response = expenseMapper.fromEntityToResponse(updatedEntity);
-//        return ResponseEntity.ok(response);
-//    }
-//
-//    @DeleteMapping("/delete/{expenseId}")
-//    public ResponseEntity<ExpenseResponse> deleteExpense(@PathVariable Long expenseId) {
-//        expenseService.deleteExpense(expenseId);
-//        return ResponseEntity.noContent().build();
-//    }
 
 
 }

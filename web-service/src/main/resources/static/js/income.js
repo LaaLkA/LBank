@@ -12,8 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function loadExpenses() {
-        // Делаем запрос на наш web-service endpoint: /api/expense/list?sender=...
-        fetch(`/api/expense/list?sender=${encodeURIComponent(userName)}`)
+        fetch(`/api/income/list?receiver=${encodeURIComponent(userName)}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Ошибка загрузки списка трат');
@@ -30,8 +29,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function renderTable(expenses) {
-        const tableBody = document.querySelector('#expenseTable tbody');
-        tableBody.innerHTML = ''; // очищаем
+        const tableBody = document.querySelector('#incomeTable tbody');
+        tableBody.innerHTML = '';
 
         expenses.forEach(exp => {
             const row = document.createElement('tr');

@@ -26,6 +26,11 @@ public class ExpenseServiceImpl implements ExpenseService {
         return expensesRepository.findExpenseBySender(sender);
     }
 
+    @Override
+    public List<ExpenseEntity> incomesList(String receiver) {
+        return  expensesRepository.findExpenseByReceiver(receiver);
+    }
+
 
     @Override
     public void createExpense(ExpenseEntity expense) {

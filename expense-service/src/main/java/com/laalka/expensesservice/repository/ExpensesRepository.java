@@ -11,4 +11,5 @@ import java.util.UUID;
 public interface ExpensesRepository extends JpaRepository<ExpenseEntity, UUID> {
     List<ExpenseEntity> findExpenseBySender(String sender);
 
+    List<ExpenseEntity> findExpenseByReceiver(String receiver);
 }

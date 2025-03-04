@@ -7,6 +7,9 @@ import java.util.UUID;
 
 public interface ExpenseService {
     List<ExpenseEntity> expensesList(String userName);
+
+    List<ExpenseEntity> incomesList(String receiver);
+
     void createExpense(ExpenseEntity expense);
     ExpenseEntity updateExpense(UUID expenseId,
                                 String sender,
