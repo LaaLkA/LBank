@@ -26,10 +26,6 @@ public class ExpenseServiceImpl implements ExpenseService {
         return expensesRepository.findExpenseBySender(sender);
     }
 
-//    @Override
-//    public ExpenseEntity createExpense(String userHash, String receiverHash, Double amount) {
-//        return expensesRepository.save(new ExpenseEntity(userHash, receiverHash, amount, "No defined"));
-//    }
 
     @Override
     public void createExpense(ExpenseEntity expense) {
@@ -37,27 +33,22 @@ public class ExpenseServiceImpl implements ExpenseService {
     }
 
     @Override
-    public ExpenseEntity updateExpense(UUID expenseId, String userHash, String receiverHash, Double amount, String category) {
-        Optional<ExpenseEntity> optionalExpense = Optional.ofNullable(expensesRepository.findById(expenseId));
+    public ExpenseEntity updateExpense(UUID expenseId,
+                                       String sender,
+                                       String receiver,
+                                       Double amount,
+                                       String category) {
+        Optional<ExpenseEntity> optionalExpense = expensesRepository.findById(expenseId);
         if (optionalExpense.isEmpty()) {
             throw new RuntimeException("Expense with id " + expenseId + " not found");
         }
 
         ExpenseEntity existingExpense = optionalExpense.get();
 
-//        existingExpense.setUserHash(existingExpense.getUserHash());
-//        existingExpense.setReceiverHash(existingExpense.getReceiverHash());
         existingExpense.setAmount(existingExpense.getAmount());
         existingExpense.setCategory(existingExpense.getCategory());
 
         return expensesRepository.save(existingExpense);
     }
 
-    @Override
-    public void deleteExpense(Long expenseId) {
-        if (!expensesRepository.existsById(expenseId)) {
-            throw new RuntimeException("Expense with id " + expenseId + " not found");
-        }
-        expensesRepository.deleteById(expenseId);
-    }
 }

@@ -18,7 +18,7 @@ public class PaymentController {
 
     @PostMapping()
     public ResponseEntity<String> transfer(
-            @Valid @RequestBody TransferRequest request,
+            @RequestBody TransferRequest request,
             @CookieValue(name = "JWT_TOKEN", required = false) String token) {
 
         paymentService.transaction(

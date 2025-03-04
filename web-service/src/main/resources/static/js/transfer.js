@@ -6,19 +6,14 @@ document.addEventListener("DOMContentLoaded", function () {
         event.preventDefault(); // отменяем стандартное поведение формы
 
         const formData = new FormData(form);
-        const sender = formData.get("sender");
         const receiver = formData.get("receiver");
         const amount = formData.get("amount");
 
         const body = {
-            sender: sender,
             receiver: receiver,
             amount: amount
         }
 
-        // Вызываем наш API-контроллер ("/api/transfer")
-        // Используем метод POST, передаём параметры
-        // Либо @RequestParam в бэкенде, либо JSON-объект
         fetch("/api/transfer", {
             method: "POST",
             headers: {

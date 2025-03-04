@@ -15,16 +15,16 @@ public class TransferService {
         this.restClient = restClient;
     }
 
-    public ResponseEntity<String> doTransfer(String sender, String receiver, Double amount) {
+    public ResponseEntity<String> doTransfer(String sender, String receiver, Double amount, String token) {
         return restClient
                 .post()
                 .uri("/payment/transfer")
+                .cookie("JWT_TOKEN", token)
                 .body(Map.of(
                         "sender", sender,
                         "receiver", receiver,
                         "amount", amount))
                 .retrieve()
                 .toEntity(String.class);
-
     }
 }

@@ -18,10 +18,10 @@ spring:
             - Path=/user/**
           filters:
             - StripPrefix=1
-        - id: expenses-service
-          uri: lb://EXPENSES-SERVICE
+        - id: expense-service
+          uri: lb://EXPENSE-SERVICE
           predicates:
-            - Path=/expenses/**
+            - Path=/expense/**
           filters:
             - StripPrefix=1
         - id: payment-service

@@ -16,12 +16,9 @@ public class TransferRequest {
 
     @NotNull
     private String sender;
-
-    @NotNull
-    @Positive
-    private Double amount;
-
     @NotNull
     private String receiver;
+    @NotNull
+    private Double amount;
 
 }

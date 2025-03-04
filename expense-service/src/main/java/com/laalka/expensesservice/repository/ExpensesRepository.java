@@ -8,9 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public interface ExpensesRepository extends JpaRepository<ExpenseEntity, Long> {
-//    ExpenseEntity findByReceiverHash(String receiverHash);
+public interface ExpensesRepository extends JpaRepository<ExpenseEntity, UUID> {
     List<ExpenseEntity> findExpenseBySender(String sender);
-//    boolean existsByTransactionId(String transactionId);
-    ExpenseEntity findById(UUID id);
+
 }

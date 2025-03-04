@@ -2,15 +2,26 @@
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Траты</title>
+    <title>Траты пользователя</title>
 </head>
 <body>
-<header>
-    <h1>Ваши траты</h1>
-</header>
-<div>
+<h1>Мои траты</h1>
 
-</div>
+<!-- Таблица для отображения расходов -->
+<table id="expenseTable" border="1">
+    <thead>
+    <tr>
+        <th>Отправитель</th>
+        <th>Получатель</th>
+        <th>Сумма</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Заполняется динамически через JS -->
+    </tbody>
+</table>
 
+<!-- Подключаем наш скрипт -->
+<script th:src="@{/js/expense.js}"></script>
 </body>
 </html>

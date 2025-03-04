@@ -17,12 +17,15 @@ public class ExpenseApiService {
     public void commitPayment(String sender, String receiver, Double amount, String token) {
         restClient
                 .post()
-                .uri("/expenses/create")
+                .uri("/expense/create")
+                .header("Authorization", "Bearer " + token)
+                .cookie("JWT_TOKEN", token)
                 .body(Map.of(
                         "sender", sender,
                         "receiver", receiver,
                         "amount", amount))
-                .header("Authorization", "Bearer " + token);
+                .retrieve()
+                .body(String.class);
 
     }
 }
