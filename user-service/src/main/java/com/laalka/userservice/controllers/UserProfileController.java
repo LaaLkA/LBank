@@ -1,5 +1,6 @@
 package com.laalka.userservice.controllers;
 
+import com.laalka.userservice.dto.ProfileResponse;
 import com.laalka.userservice.dto.RegistrationRequest;
 import com.laalka.userservice.models.UserProfile;
 import com.laalka.userservice.services.UserProfileService;
@@ -25,26 +26,26 @@ public class UserProfileController {
 
     @GetMapping("/{userName}")
     public ResponseEntity<?> getProfile(@PathVariable String userName) {
-        UserProfile UserProfile = profileService.getProfile(userName);
+        ProfileResponse UserProfile = profileService.getProfile(userName);
         return ResponseEntity.ok(UserProfile);
     }
 
-    @PutMapping("/{userName}")
-    public ResponseEntity<?> updateProfile(
-            @PathVariable String username,
-            @RequestParam(required=false) String email,
-            @RequestParam(required=false) String firstName,
-            @RequestParam(required=false) String lastName,
-            @RequestParam(required=false) String phone
-    ) {
-        UserProfile updated = profileService.updateProfile(username, email, firstName, lastName, phone);
-        return ResponseEntity.ok("Profile updated for user=" + updated.getUsername());
-    }
-
-    @DeleteMapping("/{username}")
-    public ResponseEntity<?> deleteProfile(@PathVariable String username) {
-        profileService.deleteProfile(username);
-        return ResponseEntity.ok("Profile deleted for user=" + username);
-    }
+//    @PutMapping("/{userName}")
+//    public ResponseEntity<?> updateProfile(
+//            @PathVariable String username,
+//            @RequestParam(required=false) String email,
+//            @RequestParam(required=false) String firstName,
+//            @RequestParam(required=false) String lastName,
+//            @RequestParam(required=false) String phone
+//    ) {
+//        UserProfile updated = profileService.updateProfile(username, email, firstName, lastName, phone);
+//        return ResponseEntity.ok("Profile updated for user=" + updated.getUsername());
+//    }
+//
+//    @DeleteMapping("/{username}")
+//    public ResponseEntity<?> deleteProfile(@PathVariable String username) {
+//        profileService.deleteProfile(username);
+//        return ResponseEntity.ok("Profile deleted for user=" + username);
+//    }
 }
 

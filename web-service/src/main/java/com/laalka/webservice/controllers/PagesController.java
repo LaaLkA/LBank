@@ -30,14 +30,22 @@ public class PagesController {
 
     @GetMapping("/income")
     public String income(
-            @CookieValue(name = "JWT_TOKEN", required = false) String token){
+            @CookieValue(name = "JWT_TOKEN", required = false) String token) {
         if (token == null) {
             return "redirect:/login";
         }
         return "income";
     }
 
-
+    @GetMapping("/profile")
+    public String profile(
+            @CookieValue(name = "JWT_TOKEN", required = false) String token
+    ) {
+        if (token == null) {
+            return "redirect:/login";
+        }
+        return "profile";
+    }
 
     @GetMapping("/transfer")
     public String transfer(
@@ -46,15 +54,6 @@ public class PagesController {
             return "redirect:/login";
         }
         return "transfer";
-    }
-
-    @GetMapping("/profile")
-    public String viewProfile(
-            @CookieValue(name = "JWT_TOKEN", required = false) String token) {
-        if (token == null) {
-            return "redirect:/login";
-        }
-        return "profile/view";
     }
 
     @GetMapping("/expenses")

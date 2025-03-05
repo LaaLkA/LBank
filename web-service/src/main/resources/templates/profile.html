@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Профиль</title>
+</head>
+<body>
+
+<h1>Профиль пользователя</h1>
+
+<div>
+    <strong>Логин:</strong> <span id="profileUserName"></span>
+</div>
+<div>
+    <strong>Имя:</strong> <span id="profileFirstName"></span>
+</div>
+<div>
+    <strong>Фамилия:</strong> <span id="profileLastName"></span>
+</div>
+<div>
+    <strong>Телефон:</strong> <span id="profilePhone"></span>
+</div>
+
+<script th:src="@{/js/profile.js}"></script>
+</body>
+</html>

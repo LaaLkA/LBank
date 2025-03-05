@@ -10,8 +10,13 @@ document.addEventListener('DOMContentLoaded', function () {
         const formData = new FormData(form);
         const userName = formData.get('userName');
         const password = formData.get('password');
+        const rePassword = formData.get('re-password');
 
-        // Отправляем запрос на "/register"
+        if (password !== rePassword) {
+            errorDiv.textContent = 'Пароли не совпадают';
+            return;
+        }
+
         fetch('/register', {
             method: 'POST',
             headers: {
@@ -28,7 +33,6 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .then(data => {
                 console.log('Registration success:', data);
-                // При успехе можно, например, отправить на /login
                 window.location.href = '/login';
             })
             .catch(err => {

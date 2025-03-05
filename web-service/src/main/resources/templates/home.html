@@ -1,31 +1,39 @@
 <!DOCTYPE html>
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Домашняя страница</title>
-    <!-- Подключаем jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <meta charset="UTF-8">
+  <title>Главная</title>
+  <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-<header>
-<!--    <h1 th:text="'Добро пожаловать, ' + ${userName} + '!'"></h1>-->
-    <h1 Добро пожаловать!></h1>
-</header>
-<section class="balance-section">
-    <p>Текущий баланс: <span id="balanceValue">--</span> руб.</p>
-    <button id="refreshBalanceBtn">Обновить баланс</button>
-</section>
-<nav>
-    <ul class="menu">
-        <li><a href="/expenses">Траты</a></li>
+
+<div class="main-container">
+  <aside class="sidebar">
+    <div class="user-info">
+      <img src="/static/images/user-icon.png" alt="User Icon" class="avatar">
+      <div class="user-data">
+        <p class="username"><span id="userName">USERNAME</span></p>
+      </div>
+      <div class="balance">
+        <img src="/static/images/user-balance.png" alt="User Icon" class="balance-ico">
+        <p><span id="balanceValue">9 999</span> руб.</p>
+      </div>
+    </div>
+    <nav class="menu">
+      <ul>
+        <li><a href="/income">Поступления</a></li>
+        <li><a href="/expenses">Расходы</a></li>
         <li><a href="/transfer">Перевод</a></li>
         <li><a href="/profile">Профиль</a></li>
-    </ul>
-</nav>
+      </ul>
+    </nav>
+  </aside>
 
-
-
+  <section class="content">
+    <h1>Добро пожаловать!</h1>
+    <p>Здесь может быть ваша основная информация, виджеты и т.д.</p>
+  </section>
+</div>
 <script th:src="@{/js/home.js}"></script>
 </body>
 </html>

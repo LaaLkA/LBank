@@ -1,8 +1,18 @@
 document.addEventListener('DOMContentLoaded', function() {
     const balanceValueElem = document.getElementById('balanceValue');
-    const refreshBalanceBtn = document.getElementById('refreshBalanceBtn');
+    const userNameElem = document.getElementById('userName');
+    // const refreshBalanceBtn = document.getElementById('refreshBalanceBtn');
 
-    // Функция для отправки запроса в BalanceApiController и обновления баланса
+    function getCookieValue(cookieName){
+        const match = document.cookie.match(new RegExp('(^|;\\s*)' + cookieName + '=([^;]*)'));
+        return match ? decodeURIComponent(match[2]) : null;
+    }
+    const userName = getCookieValue('USER_NAME');
+
+    if (userName && userNameElem) {
+        userNameElem.textContent = userName;
+    }
+
     function updateBalance() {
 
         fetch('/api/balance/get', {
@@ -10,30 +20,21 @@ document.addEventListener('DOMContentLoaded', function() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            // body: JSON.stringify({ userName: userName })
         })
             .then(response => {
-                // Проверяем, не вернулся ли код ошибки
                 if (!response.ok) {
                     return response.text().then(text => { throw new Error(text ); });
                 }
-                // Если всё OK, сервер вернёт Double. При парсе из JSON получится число
                 return response.json();
             })
             .then(data => {
-                // data — это баланс, число
                 balanceValueElem.textContent = data;
             })
             .catch(error => {
                 console.error('Ошибка при запросе баланса:', error);
-                // При желании можно вывести сообщение пользователю
                 balanceValueElem.textContent = "Ошибка";
             });
     }
 
-    // Навешиваем обработчик на кнопку
-    refreshBalanceBtn.addEventListener('click', updateBalance);
-
-    // Можно сразу запросить баланс при загрузке страницы
     updateBalance();
 });
