@@ -6,19 +6,20 @@
   <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-
 <div class="main-container">
-  <aside class="sidebar">
-    <div class="user-info">
-      <img src="/static/images/user-icon.png" alt="User Icon" class="avatar">
-      <div class="user-data">
-        <p class="username"><span id="userName">USERNAME</span></p>
+  <div class="main-container-left">
+    <aside class="sidebar">
+      <div class="user-info">
+        <div class="user-data">
+          <img src="/static/images/user-icon.png" alt="User Icon" class="avatar">
+          <p class="username"><span id="userName">USERNAME</span></p>
+        </div>
+        <div class="balance">
+          <img src="/static/images/balance-icon.png" alt="BalanceIcon" class="balance-ico">
+          <p class="balance-count"><span id="balanceValue">9 999</span> руб.</p>
+        </div>
       </div>
-      <div class="balance">
-        <img src="/static/images/user-balance.png" alt="User Icon" class="balance-ico">
-        <p><span id="balanceValue">9 999</span> руб.</p>
-      </div>
-    </div>
+    </aside>
     <nav class="menu">
       <ul>
         <li><a href="/income">Поступления</a></li>
@@ -27,13 +28,14 @@
         <li><a href="/profile">Профиль</a></li>
       </ul>
     </nav>
-  </aside>
-
+  </div>
   <section class="content">
     <h1>Добро пожаловать!</h1>
     <p>Здесь может быть ваша основная информация, виджеты и т.д.</p>
   </section>
 </div>
+
+
 <script th:src="@{/js/home.js}"></script>
 </body>
 </html>

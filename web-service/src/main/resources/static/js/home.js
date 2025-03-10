@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const balanceValueElem = document.getElementById('balanceValue');
     const userNameElem = document.getElementById('userName');
-    // const refreshBalanceBtn = document.getElementById('refreshBalanceBtn');
 
     function getCookieValue(cookieName){
         const match = document.cookie.match(new RegExp('(^|;\\s*)' + cookieName + '=([^;]*)'));

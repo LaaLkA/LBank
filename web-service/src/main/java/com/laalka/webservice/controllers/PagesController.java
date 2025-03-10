@@ -25,7 +25,7 @@ public class PagesController {
         if (token == null) {
             return "redirect:/login";
         }
-        return "home";
+        return "home-work";
     }
 
     @GetMapping("/income")
@@ -63,6 +63,6 @@ public class PagesController {
         if (token == null) {
             return "redirect:/login";
         }
-        return "expenses";
+        return "expense";
     }
 }

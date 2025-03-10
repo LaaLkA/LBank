@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const resultBlock = document.getElementById("resultBlock");
 
     form.addEventListener("submit", function (event) {
-        event.preventDefault(); // отменяем стандартное поведение формы
+        event.preventDefault();
 
         const formData = new FormData(form);
         const receiver = formData.get("receiver");
@@ -19,7 +19,8 @@ document.addEventListener("DOMContentLoaded", function () {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(body)
+            body: JSON.stringify(body),
+            credentials: "include"
         })
             .then(response => {
                 if (!response.ok) {

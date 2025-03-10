@@ -3,6 +3,12 @@ server:
 spring:
   application:
     name: web-service
+  mvc:
+    view:
+      suffix: .html
+  web:
+    resources:
+      static-locations: classpath:/static/,classpath:/templates/
 eureka:
   client:
     service-url:
