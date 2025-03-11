@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Главная</title>
-    <link rel="stylesheet" href="/css/style.css">
+<!--    <link rel="stylesheet" href="/css/style.css">-->
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-<div class="main-container">
-    <div class="main-container-left">
-        <aside class="sidebar">
+<div class="wrapper">
+    <div class="main-container">
+
+        <aside class="sidebar" id="sidebar">
             <div class="user-info">
                 <div class="user-data">
                     <img src="/images/user-icon.png" alt="User Icon" class="avatar">
@@ -19,23 +21,23 @@
                     <p class="balance-count"><span id="balanceValue">9 999</span> руб.</p>
                 </div>
             </div>
+
+            <nav class="menu">
+                <ul>
+                    <li><a href="/income">Поступления</a></li>
+                    <li><a href="/expenses">Расходы</a></li>
+                    <li><a href="/transfer">Перевод</a></li>
+                    <li><a href="/profile">Профиль</a></li>
+                </ul>
+            </nav>
         </aside>
-        <nav class="menu">
-            <ul>
-                <li><a href="#" data-page="income">Поступления</a></li>
-                <li><a href="#" data-page="expense">Расходы</a></li>
-                <li><a href="#" data-page="transfer">Перевод</a></li>
-                <li><a href="#" data-page="profile">Профиль</a></li>
-            </ul>
-        </nav>
+
+        <section class="content">
+            <h1>Добро пожаловать в LBank!</h1>
+        </section>
     </div>
-    <section class="content" id="content">
-        <h1>Добро пожаловать!</h1>
-        <p>Здесь может быть ваша основная информация, виджеты и т.д.</p>
-    </section>
 </div>
 
-
-<script th:src="@{/js/home-work.js}"></script>
+<script th:src="@{/js/home.js}"></script>
 </body>
 </html>

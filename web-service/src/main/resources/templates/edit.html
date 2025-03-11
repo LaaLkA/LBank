@@ -1,29 +1,58 @@
 <!DOCTYPE html>
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>Редактирование профиля</title>
-  <link rel="stylesheet" href="/css/styles.css">
+    <meta charset="UTF-8">
+    <title>Редактирование профиля</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-<header>
-  <h1>Редактирование профиля</h1>
-</header>
-<form th:action="@{/profile/update}" method="post">
-  <label>Email:
-    <input type="text" name="email" th:value="${profile.email}" placeholder="Email">
-  </label><br/>
-  <label>Имя:
-    <input type="text" name="firstName" th:value="${profile.firstName}" placeholder="Имя">
-  </label><br/>
-  <label>Фамилия:
-    <input type="text" name="lastName" th:value="${profile.lastName}" placeholder="Фамилия">
-  </label><br/>
-  <label>Телефон:
-    <input type="text" name="phone" th:value="${profile.phone}" placeholder="Телефон">
-  </label><br/>
-  <button type="submit">Сохранить изменения</button>
-  <div class="error" th:if="${error}">[[${error}]]</div>
-</form>
+<div class="main-container">
+    <div class="main-container-left">
+        <aside class="sidebar">
+            <div class="user-info">
+                <div class="user-data">
+                    <img src="/images/user-icon.png" alt="User Icon" class="avatar">
+                    <p class="username"><span id="userName">USERNAME</span></p>
+                </div>
+                <div class="balance">
+                    <img src="/images/balance-icon.png" alt="BalanceIcon" class="balance-ico">
+                    <p class="balance-count"><span id="balanceValue">9 999</span> руб.</p>
+                </div>
+            </div>
+        </aside>
+        <nav class="menu">
+            <ul>
+                <li><a href="/income">Поступления</a></li>
+                <li><a href="/expenses">Расходы</a></li>
+                <li><a href="/transfer">Перевод</a></li>
+                <li><a href="/profile">Профиль</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div>
+        <header>
+            <h1>Редактирование профиля</h1>
+        </header>
+        <form th:action="@{/profile/update}" method="post">
+            <label>Email:
+                <input type="text" name="email" th:value="${profile.email}" placeholder="Email">
+            </label><br/>
+            <label>Имя:
+                <input type="text" name="firstName" th:value="${profile.firstName}" placeholder="Имя">
+            </label><br/>
+            <label>Фамилия:
+                <input type="text" name="lastName" th:value="${profile.lastName}" placeholder="Фамилия">
+            </label><br/>
+            <label>Телефон:
+                <input type="text" name="phone" th:value="${profile.phone}" placeholder="Телефон">
+            </label><br/>
+            <button type="submit">Сохранить изменения</button>
+            <div class="error" th:if="${error}">[[${error}]]</div>
+        </form>
+
+    </div>
+</div>
+
 </body>
 </html>

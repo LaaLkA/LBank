@@ -37,4 +37,38 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     updateBalance();
+
+    function loadExpenses() {
+        fetch(`/api/expense/list?sender=${encodeURIComponent(userName)}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Ошибка загрузки списка трат');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Expenses loaded:', data);
+                renderTable(data);
+            })
+            .catch(error => {
+                console.error('Ошибка при запросе списка трат:', error);
+            });
+    }
+
+    function renderTable(expenses) {
+        const tableBody = document.querySelector('#expenseTable tbody');
+        tableBody.innerHTML = ''; // очищаем
+
+        expenses.forEach(exp => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${exp.sender}</td>
+                <td>${exp.receiver}</td>
+                <td>${exp.amount}</td>
+            `;
+            tableBody.appendChild(row);
+        });
+    }
+
+    loadExpenses();
 });

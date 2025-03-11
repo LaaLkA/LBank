@@ -1,8 +1,125 @@
-body {
-    font-family: Arial, sans-serif;
+html, body {
     margin: 0;
     padding: 0;
+    font-family: Arial, sans-serif;
     background: #f4f4f4;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.back-button {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+}
+
+.page-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 20px;
+}
+
+.titles {
+    display: flex;
+    flex-direction: column;
+}
+
+.transfer-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.page-subtitle {
+    font-size: 16px;
+    font-weight: normal;
+    margin: 4px 0 0;
+    color: #555;
+}
+
+.transfer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto 40px;
+    padding: 0 20px;
+}
+
+.transfer-card {
+    width: 100%;
+    max-width: 600px;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.transfer-label {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.transfer-info {
+    font-size: 16px;
+    margin: 4px 0;
+}
+
+.transfer-input {
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 14px;
+    font-size: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    outline: none;
+    box-sizing: border-box;
+}
+
+.transfer-submit {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    margin: 20px auto;
+    padding: 14px;
+    background-color: #FFD600;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.transfer-submit:hover {
+    background-color: #ffcc00;
+}
+
+#resultBlock {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 16px;
+    color: #d00;
+    text-align: center;
+}
+
+
+.transfer-label {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 .header {
@@ -101,29 +218,34 @@ body {
     text-align: center;
     margin-top: 10px;
 }
-.main-container{
+
+.main-container {
     display: flex;
     flex-direction: row;
+    gap: 20px;
 }
 
-.main-container-left {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    background-color: #f0f2f5;
-    margin: 0;
+.menu-toggle {
+    display: none;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 9999;
+    background: #fff;
+    border: 2px solid #007BFF;
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 24px;
 }
 
 .sidebar {
-    width: 280px;
-    height: 130px;
-    background-color: #fff;
-    border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    margin: 20px;
-    padding: 20px;
     display: flex;
     flex-direction: column;
+    width: 280px;
+    gap: 20px;
+    position: relative;
+    transition: left 0.3s ease;
 }
 
 .user-info {
@@ -131,6 +253,10 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     gap: 30px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
 }
 
 .user-data {
@@ -173,17 +299,16 @@ body {
 }
 
 .menu {
-    width: 320px;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 120px;
-    margin-left: 20px;
+    align-items: center;
 }
 
 .menu ul {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -216,20 +341,83 @@ body {
 
 .content {
     flex: 1;
-    margin: 20px 20px 20px 0;
-    background-color: #fff;
+    display: flex;
+    flex-direction: column;
     border-radius: 20px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     padding: 20px;
+    background-color: #fff;
+}
+
+.header-text {
+    text-align: start;
+    margin-bottom: 40px;
+    color: #333333;
+    font-size: 38px;
+    font-weight: bold;
+    border-radius: 20px;
+
+}
+
+.transfer-form {
+    display: flex;
+    flex-direction: column;
 }
 
 
+.transfer-placeholder {
+    margin-bottom: 15px;
+    border: 1px solid #cccccc;
+    border-radius: 60px;
+    font-size: 16px;
+    color: #333333;
+    width: 50%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    background-color: #fff;
+}
 
+.transfer-form button {
+    padding: 12px;
+    background-color: #ffffff;
+    color: #007BFF;
+    border: none;
+    border-radius: 60px;
+    font-size: 16px;
+    cursor: pointer;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+    margin-top: 5px;
+    width: 50%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 
+}
 
+.transfer-form button:hover {
+    background-color: #e6e6e6;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
 
+@media (max-width: 768px) {
+    .page-header {
+        flex-direction: row;
+        gap: 8px;
+    }
 
+    .transfer-title {
+        font-size: 20px;
+    }
 
+    .page-subtitle {
+        font-size: 14px;
+    }
 
+    .transfer-card,
+    #resultBlock {
+        max-width: 90%;
+    }
 
-
+    .transfer-submit {
+        max-width: 90%;
+    }
+}

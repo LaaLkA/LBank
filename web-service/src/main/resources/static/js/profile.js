@@ -1,14 +1,42 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const balanceValueElem = document.getElementById('balanceValue');
+    const userNameElem = document.getElementById('userName');
+
     function getCookieValue(cookieName) {
         const matches = document.cookie.match(new RegExp('(?:^|; )' + cookieName + '=([^;]*)'));
         return matches ? decodeURIComponent(matches[1]) : null;
     }
 
     const userName = getCookieValue('USER_NAME');
-    if (!userName) {
-        console.warn('USER_NAME cookie not found');
-        return;
+
+    if (userName && userNameElem) {
+        userNameElem.textContent = userName;
     }
+
+    function updateBalance() {
+
+        fetch('/api/balance/get', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+            .then(response => {
+                if (!response.ok) {
+                    return response.text().then(text => { throw new Error(text ); });
+                }
+                return response.json();
+            })
+            .then(data => {
+                balanceValueElem.textContent = data;
+            })
+            .catch(error => {
+                console.error('Ошибка при запросе баланса:', error);
+                balanceValueElem.textContent = "Ошибка";
+            });
+    }
+
+    updateBalance();
 
     fetch(`/api/profile/${encodeURIComponent(userName)}`, {
         method: 'GET',

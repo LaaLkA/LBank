@@ -1,0 +1,148 @@
+/* Сброс базовых отступов и шрифта */
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    height: 100%;
+    box-sizing: border-box;
+}
+.wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+/* Главный контейнер, ограничивающий ширину и центрирующий содержимое */
+.transfer-container {
+    max-width: 600px;     /* Можно менять под нужную ширину */
+    margin: 0 auto 40px;  /* Выравнивание по центру и нижний отступ */
+    padding: 20px;
+}
+
+/* "Шапка" с кнопкой "Назад" и заголовками */
+.page-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: start;/* Кнопка и текст выравниваются по верхней линии */
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+/* Кнопка "Назад" */
+.back-button {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+}
+
+/* Обёртка для заголовков */
+.titles {
+    display: flex;
+    flex-direction: column;  /* Подзаголовок будет под главным заголовком */
+}
+
+/* Главный заголовок "Перевод" */
+.transfer-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Подзаголовок "по имени пользователя" */
+.page-subtitle {
+    font-size: 16px;
+    font-weight: normal;
+    margin: 4px 0 0;
+    color: #555;
+}
+
+/* Общий вид "карточки" */
+.transfer-card {
+    width: 100%;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Метка (label) */
+.transfer-label {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+/* Дополнительный текст (например, баланс) */
+.transfer-info {
+    font-size: 16px;
+    margin: 4px 0;
+}
+
+/* Поля ввода */
+.transfer-input {
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 14px;
+    font-size: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    outline: none;
+    box-sizing: border-box;
+}
+
+/* Кнопка отправки */
+.transfer-submit {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    margin: 20px auto;
+    padding: 14px;
+    background-color: #FFD600;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.transfer-submit:hover {
+    background-color: #ffcc00;
+}
+
+/* Блок для вывода ошибок или статусов */
+#resultBlock {
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    color: #d00; /* красный для ошибок */
+}
+
+/* Адаптив под мобильные */
+@media (max-width: 480px) {
+    .transfer-container {
+        padding: 10px;
+    }
+
+    .page-header {
+        gap: 8px;
+    }
+
+    .transfer-title {
+        font-size: 20px;
+    }
+
+    .page-subtitle {
+        font-size: 14px;
+    }
+
+    .transfer-card {
+        margin-bottom: 16px;
+    }
+
+    .transfer-submit {
+        max-width: 100%;
+    }
+}

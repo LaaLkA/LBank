@@ -2,22 +2,60 @@
 <head>
     <meta charset="UTF-8">
     <title>Перевод</title>
+    <!--    <link rel="stylesheet" href="/css/transfer.css">-->
+    <link rel="stylesheet" href="/static/css/transfer.css">
 </head>
-<body>
-<header>
-    <h1>Перевод</h1>
-</header>
+<body class="wrapper">
+<a href="#" class="back-button">← Назад</a>
+<div class="transfer-container">
 
-<div>
-    <form id="transferForm">
-            <input name="receiver" placeholder="Получатель" required>
-            <input name="amount" placeholder="Сумма" required>
-            <button type="submit">Отправить перевод</button>
-        </form>
+    <div class="page-header">
+
+        <div class="titles">
+            <h1 class="transfer-title">Перевод</h1>
+            <h2 class="page-subtitle">по имени пользователя</h2>
+        </div>
+    </div>
+
+    <div class="transfer-card">
+        <label class="transfer-label">Откуда</label>
+        <p class="transfer-info">
+            Ваш счёт: <strong id="userName">USERNAME</strong>
+        </p>
+        <p class="transfer-info">
+            Баланс: <strong id="balanceValue">0</strong> руб.
+        </p>
+    </div>
+
+    <div class="transfer-card">
+        <label for="receiverInput" class="transfer-label">Куда</label>
+        <input
+                id="receiverInput"
+                class="transfer-input"
+                name="receiver"
+                placeholder="Получатель (Имя пользователя)"
+                required
+        />
+    </div>
+
+    <div class="transfer-card">
+        <label for="amountInput" class="transfer-label">Сколько перевести</label>
+        <input
+                id="amountInput"
+                class="transfer-input"
+                name="amount"
+                placeholder="Сумма"
+                type="number"
+                min="1"
+                required
+        />
+    </div>
+
+    <button type="submit" class="transfer-submit">Отправить перевод</button>
+
     <div id="resultBlock"></div>
 </div>
 
 <script th:src="@{/js/transfer.js}"></script>
-
 </body>
 </html>

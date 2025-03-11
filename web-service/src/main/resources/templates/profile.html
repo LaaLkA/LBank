@@ -3,23 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <title>Профиль</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+<div class="main-container">
+    <div class="main-container-left">
+        <aside class="sidebar">
+            <div class="user-info">
+                <div class="user-data">
+                    <img src="/images/user-icon.png" alt="User Icon" class="avatar">
+                    <p class="username"><span id="userName">USERNAME</span></p>
+                </div>
+                <div class="balance">
+                    <img src="/images/balance-icon.png" alt="BalanceIcon" class="balance-ico">
+                    <p class="balance-count"><span id="balanceValue">9 999</span> руб.</p>
+                </div>
+            </div>
+        </aside>
+        <nav class="menu">
+            <ul>
+                <li><a href="/income">Поступления</a></li>
+                <li><a href="/expenses">Расходы</a></li>
+                <li><a href="/transfer">Перевод</a></li>
+                <li><a href="/profile">Профиль</a></li>
+            </ul>
+        </nav>
+    </div>
 
-<h1>Профиль пользователя</h1>
+    <div>
+        <h1>Профиль пользователя</h1>
 
-<div>
-    <strong>Логин:</strong> <span id="profileUserName"></span>
+        <div>
+            <strong>Логин:</strong> <span id="profileUserName"></span>
+        </div>
+        <div>
+            <strong>Имя:</strong> <span id="profileFirstName"></span>
+        </div>
+        <div>
+            <strong>Фамилия:</strong> <span id="profileLastName"></span>
+        </div>
+        <div>
+            <strong>Телефон:</strong> <span id="profilePhone"></span>
+        </div>
+    </div>
 </div>
-<div>
-    <strong>Имя:</strong> <span id="profileFirstName"></span>
-</div>
-<div>
-    <strong>Фамилия:</strong> <span id="profileLastName"></span>
-</div>
-<div>
-    <strong>Телефон:</strong> <span id="profilePhone"></span>
-</div>
+
 
 <script th:src="@{/js/profile.js}"></script>
 </body>
