@@ -1,11 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
     const balanceValueElem = document.getElementById('balanceValue');
     const userNameElem = document.getElementById('userName');
+    const logoutBtn = document.getElementById('logoutBtn');
 
     function getCookieValue(cookieName){
         const match = document.cookie.match(new RegExp('(^|;\\s*)' + cookieName + '=([^;]*)'));
         return match ? decodeURIComponent(match[2]) : null;
     }
+
     const userName = getCookieValue('USER_NAME');
 
     if (userName && userNameElem) {
@@ -36,4 +38,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     updateBalance();
+
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+            document.cookie = 'JWT_TOKEN=; Max-Age=0; path=/';
+            document.cookie = 'USER_NAME=; Max-Age=0; path=/';
+            window.location.href = '/login';
+        });
+    }
 });

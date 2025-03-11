@@ -38,84 +38,6 @@ html, body {
     color: #555;
 }
 
-.transfer-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto 40px;
-    padding: 0 20px;
-}
-
-.transfer-card {
-    width: 100%;
-    max-width: 600px;
-    background-color: #fff;
-    border-radius: 20px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.transfer-label {
-    display: block;
-    font-size: 18px;
-    margin-bottom: 8px;
-    color: #333;
-}
-
-.transfer-info {
-    font-size: 16px;
-    margin: 4px 0;
-}
-
-.transfer-input {
-    width: 100%;
-    border: none;
-    border-radius: 10px;
-    padding: 14px;
-    font-size: 16px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    outline: none;
-    box-sizing: border-box;
-}
-
-.transfer-submit {
-    display: block;
-    width: 100%;
-    max-width: 300px;
-    margin: 20px auto;
-    padding: 14px;
-    background-color: #FFD600;
-    border: none;
-    border-radius: 10px;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.transfer-submit:hover {
-    background-color: #ffcc00;
-}
-
-#resultBlock {
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-    font-size: 16px;
-    color: #d00;
-    text-align: center;
-}
-
-
-.transfer-label {
-    display: block;
-    font-size: 18px;
-    margin-bottom: 8px;
-    color: #333;
-}
-
 .wrapper {
     max-width: 1200px;
     margin: 0 auto;
@@ -359,65 +281,35 @@ html, body {
 
 }
 
-.transfer-form {
-    display: flex;
-    flex-direction: column;
-}
-
-
-.transfer-placeholder {
-    margin-bottom: 15px;
-    border: 1px solid #cccccc;
-    border-radius: 60px;
-    font-size: 16px;
-    color: #333333;
-    width: 50%;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    background-color: #fff;
-}
-
-.transfer-form button {
-    padding: 12px;
-    background-color: #ffffff;
-    color: #007BFF;
-    border: none;
-    border-radius: 60px;
-    font-size: 16px;
-    cursor: pointer;
-    justify-content: center;
-    transition: background-color 0.3s ease;
-    margin-top: 5px;
-    width: 50%;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-
-}
-
-.transfer-form button:hover {
-    background-color: #e6e6e6;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
 @media (max-width: 768px) {
     .page-header {
         flex-direction: row;
         gap: 8px;
     }
 
-    .transfer-title {
-        font-size: 20px;
-    }
-
     .page-subtitle {
         font-size: 14px;
     }
+}
 
-    .transfer-card,
-    #resultBlock {
-        max-width: 90%;
-    }
+.logout-button {
+    display: block;
+    font-size: 28px;
+    padding: 12px;
+    border-radius: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    color: #333;
+    text-align: center;
+    font-weight: bold;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    width: 100%;
+    border: none;
+    outline: none;
+}
 
-    .transfer-submit {
-        max-width: 90%;
-    }
+.logout-button:hover {
+    background-color: #e6e6e6;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
