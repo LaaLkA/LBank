@@ -57,14 +57,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function renderTable(expenses) {
         const tableBody = document.querySelector('#expenseTable tbody');
-        tableBody.innerHTML = ''; // очищаем
+        tableBody.innerHTML = '';
 
         expenses.forEach(exp => {
             const row = document.createElement('tr');
             row.innerHTML = `
-                <td>${exp.sender}</td>
                 <td>${exp.receiver}</td>
-                <td>${exp.amount}</td>
+                <td>${exp.amount} руб.</td>
             `;
             tableBody.appendChild(row);
         });

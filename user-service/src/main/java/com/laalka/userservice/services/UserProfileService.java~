@@ -35,10 +35,22 @@ public class UserProfileService {
         profileResponse.setUserName(profile.getUsername());
         profileResponse.setFirstName(profile.getFirstName());
         profileResponse.setLastName(profile.getLastName());
-        profileResponse.setEmail(profile.getEmail());
         profileResponse.setPhone(profile.getPhone());
         return profileResponse;
     }
 
+//    public UserProfile updateProfile(String username, String email, String firstName, String lastName, String phone) {
+//        UserProfile profile = getProfile(username);
+//        if (email != null) profile.setEmail(email);
+//        if (firstName != null) profile.setFirstName(firstName);
+//        if (lastName != null) profile.setLastName(lastName);
+//        if (phone != null) profile.setPhone(phone);
+//        return repository.save(profile);
+//    }
+//
+//    public void deleteProfile(String username) {
+//        UserProfile profile = getProfile(username);
+//        repository.delete(profile);
+//    }
 }
 

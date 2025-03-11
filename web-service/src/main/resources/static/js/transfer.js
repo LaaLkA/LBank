@@ -14,34 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
         userNameElem.textContent = userName;
     }
 
-    function updateBalance() {
-
-        fetch('/api/balance/get', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-        })
-            .then(response => {
-                if (!response.ok) {
-                    return response.text().then(text => { throw new Error(text ); });
-                }
-                return response.json();
-            })
-            .then(data => {
-                balanceValueElem.textContent = data;
-            })
-            .catch(error => {
-                console.error('Ошибка при запросе баланса:', error);
-                balanceValueElem.textContent = "Ошибка";
-            });
-    }
-
-    updateBalance();
-
     form.addEventListener("submit", function (event) {
-
-        updateBalance();
 
         event.preventDefault();
 

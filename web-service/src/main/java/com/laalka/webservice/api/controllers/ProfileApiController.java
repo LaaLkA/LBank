@@ -19,7 +19,7 @@ public class ProfileApiController {
     @GetMapping("/{userName}")
     public ResponseEntity<ProfileResponse> profile(@PathVariable String userName,
                                                    @CookieValue(name = "JWT_TOKEN", required = false) String token) {
-        System.out.println("0000000000000000!!!!!!!!!0000000000000" + userName);
+        System.out.println("Profile response with USERNAME: " + userName);
         ProfileResponse profile = profileService.getProfile(userName, token);
         if (profile == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();

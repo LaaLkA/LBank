@@ -3,51 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <title>Профиль</title>
-    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/profile.css">
+<!--    <link rel="stylesheet" href="/static/css/profile.css">-->
 </head>
-<body>
-<div class="main-container">
-    <div class="main-container-left">
-        <aside class="sidebar">
-            <div class="user-info">
-                <div class="user-data">
-                    <img src="/images/user-icon.png" alt="User Icon" class="avatar">
-                    <p class="username"><span id="userName">USERNAME</span></p>
-                </div>
-                <div class="balance">
-                    <img src="/images/balance-icon.png" alt="BalanceIcon" class="balance-ico">
-                    <p class="balance-count"><span id="balanceValue">9 999</span> руб.</p>
-                </div>
-            </div>
-        </aside>
-        <nav class="menu">
-            <ul>
-                <li><a href="/income">Поступления</a></li>
-                <li><a href="/expenses">Расходы</a></li>
-                <li><a href="/transfer">Перевод</a></li>
-                <li><a href="/profile">Профиль</a></li>
-            </ul>
-        </nav>
+<body class="wrapper">
+
+<a href="/home" class="back-button">← Назад</a>
+
+<div class="profile-container">
+    <div class="page-header">
+        <h1 class="profile-title">Профиль пользователя</h1>
     </div>
 
-    <div>
-        <h1>Профиль пользователя</h1>
+    <div class="profile-card">
+        <label class="profile-label">Логин</label>
+        <p class="profile-info" id="profileUserName"></p>
+    </div>
 
-        <div>
-            <strong>Логин:</strong> <span id="profileUserName"></span>
-        </div>
-        <div>
-            <strong>Имя:</strong> <span id="profileFirstName"></span>
-        </div>
-        <div>
-            <strong>Фамилия:</strong> <span id="profileLastName"></span>
-        </div>
-        <div>
-            <strong>Телефон:</strong> <span id="profilePhone"></span>
-        </div>
+    <div class="profile-card">
+        <label class="profile-label">Имя</label>
+        <p class="profile-info" id="profileFirstName"></p>
+    </div>
+
+    <div class="profile-card">
+        <label class="profile-label">Фамилия</label>
+        <p class="profile-info" id="profileLastName"></p>
+    </div>
+
+    <div class="profile-card">
+        <label class="profile-label">Email</label>
+        <p class="profile-info" id="profileEmail"></p>
+    </div>
+
+    <div class="profile-card">
+        <label class="profile-label">Телефон</label>
+        <p class="profile-info" id="profilePhone"></p>
     </div>
 </div>
-
 
 <script th:src="@{/js/profile.js}"></script>
 </body>

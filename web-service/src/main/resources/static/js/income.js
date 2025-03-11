@@ -63,8 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const row = document.createElement('tr');
             row.innerHTML = `
                 <td>${exp.sender}</td>
-                <td>${exp.receiver}</td>
-                <td>${exp.amount}</td>
+                <td>${exp.amount} руб.</td>
             `;
             tableBody.appendChild(row);
         });

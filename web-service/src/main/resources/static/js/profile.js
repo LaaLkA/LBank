@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('profileUserName').textContent = profileData.userName || '';
             document.getElementById('profileFirstName').textContent = profileData.firstName || '';
             document.getElementById('profileLastName').textContent = profileData.lastName || '';
+            document.getElementById('profileEmail').textContent = profileData.email || '';
             document.getElementById('profilePhone').textContent = profileData.phone || '';
         })
         .catch(error => {
