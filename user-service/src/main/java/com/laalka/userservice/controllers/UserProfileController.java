@@ -30,22 +30,28 @@ public class UserProfileController {
         return ResponseEntity.ok(UserProfile);
     }
 
-//    @PutMapping("/{userName}")
-//    public ResponseEntity<?> updateProfile(
-//            @PathVariable String username,
-//            @RequestParam(required=false) String email,
-//            @RequestParam(required=false) String firstName,
-//            @RequestParam(required=false) String lastName,
-//            @RequestParam(required=false) String phone
-//    ) {
-//        UserProfile updated = profileService.updateProfile(username, email, firstName, lastName, phone);
-//        return ResponseEntity.ok("Profile updated for user=" + updated.getUsername());
-//    }
-//
-//    @DeleteMapping("/{username}")
-//    public ResponseEntity<?> deleteProfile(@PathVariable String username) {
-//        profileService.deleteProfile(username);
-//        return ResponseEntity.ok("Profile deleted for user=" + username);
-//    }
+    @PutMapping("/{userName}")
+    public ResponseEntity<ProfileResponse> updateProfile(
+            @PathVariable String userName,
+            @RequestBody ProfileResponse profileData
+    ) {
+        UserProfile updated = profileService.updateProfile(
+                userName,
+                profileData.getEmail(),
+                profileData.getFirstName(),
+                profileData.getLastName(),
+                profileData.getPhone()
+        );
+
+        ProfileResponse response = new ProfileResponse();
+        response.setUserName(updated.getUsername());
+        response.setFirstName(updated.getFirstName());
+        response.setLastName(updated.getLastName());
+        response.setEmail(updated.getEmail());
+        response.setPhone(updated.getPhone());
+
+        return ResponseEntity.ok(response);
+    }
+
 }
 

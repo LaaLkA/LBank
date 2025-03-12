@@ -26,4 +26,19 @@ public class ProfileApiController {
         }
         return ResponseEntity.ok(profile);
     }
+
+    @PutMapping("/{userName}")
+    public ResponseEntity<ProfileResponse> updateProfile(
+            @PathVariable String userName,
+            @RequestBody ProfileResponse profileData,
+            @CookieValue(name = "JWT_TOKEN", required = false) String token) {
+        try {
+            System.out.println("Profile response with USERNAME: " + userName);
+            ProfileResponse updatedProfile = profileService.updateProfile(userName, profileData, token);
+            return ResponseEntity.ok(updatedProfile);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(null);
+        }
+    }
 }

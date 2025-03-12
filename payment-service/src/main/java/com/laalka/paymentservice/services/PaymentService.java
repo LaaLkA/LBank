@@ -3,7 +3,6 @@ package com.laalka.paymentservice.services;
 import com.laalka.paymentservice.api.services.ExpenseApiService;
 import com.laalka.paymentservice.models.BalanceEntity;
 import com.laalka.paymentservice.repositories.BalanceRepository;
-import com.laalka.paymentservice.repositories.OutboxEventRepository;
 import com.laalka.paymentservice.utils.HashService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,12 +15,6 @@ public class PaymentService {
 
     @Autowired
     private ExpenseApiService expenseApiService;
-
-    @Autowired
-    private OutboxEventRepository outboxEventRepository;
-
-    @Autowired
-    private JsonService jsonService;
 
     @Autowired
     private HashService hashService;
@@ -52,25 +45,7 @@ public class PaymentService {
         balanceRepository.save(senderBalance);
         balanceRepository.save(receiverBalance);
         expenseApiService.commitPayment(sender,receiver, amount, token);
-//        PaymentEvent event = new PaymentEvent(
-//                hashService.transactionHash(sender, receiver),
-//                sender,
-//                receiver,
-//                amount,
-//                LocalDateTime.now().toString()
-//        );
 
-//        String eventJson = jsonService.serializeToJson(event);
-//
-//        OutboxEvent outboxEvent = OutboxEvent.builder()
-//                .eventType("PAYMENT_EVENT")
-//                .aggregateId(sender.toString())
-//                .payload(eventJson)
-//                .createdAt(LocalDateTime.now())
-//                .processed(false)
-//                .build();
-//
-//        outboxEventRepository.save(outboxEvent);
     }
 
 }

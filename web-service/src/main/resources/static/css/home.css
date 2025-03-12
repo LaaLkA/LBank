@@ -215,9 +215,10 @@ html, body {
 }
 
 .balance-count {
-    font-size: 24px;
+    font-size: clamp(14px, 4vw, 24px);
     font-weight: lighter;
     margin: 0;
+    white-space: nowrap;
 }
 
 .menu {

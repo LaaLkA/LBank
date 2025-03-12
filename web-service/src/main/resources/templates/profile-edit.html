@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование профиля</title>
+    <link rel="stylesheet" href="/css/profile-edit.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="card">
+        <h2 class="card-title">Редактирование профиля</h2>
+
+        <div class="profile-info">
+            <label>Логин (не редактируется):</label>
+            <span id="profileUserName" class="read-only-field"></span>
+        </div>
+
+        <form id="profileEditForm">
+            <div class="form-group">
+                <label for="emailInput">Email:</label>
+                <input type="text" id="emailInput" name="email" placeholder="Email">
+            </div>
+            <div class="form-group">
+                <label for="firstNameInput">Имя:</label>
+                <input type="text" id="firstNameInput" name="firstName" placeholder="Имя">
+            </div>
+            <div class="form-group">
+                <label for="lastNameInput">Фамилия:</label>
+                <input type="text" id="lastNameInput" name="lastName" placeholder="Фамилия">
+            </div>
+            <div class="form-group">
+                <label for="phoneInput">Телефон:</label>
+                <input type="text" id="phoneInput" name="phone" placeholder="Телефон">
+            </div>
+
+            <button type="submit" class="save-btn">Сохранить изменения</button>
+            <div class="error-message" id="errorBlock"></div>
+        </form>
+    </div>
+</div>
+
+<script src="/js/profile-edit.js"></script>
+
+</body>
+</html>

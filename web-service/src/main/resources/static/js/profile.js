@@ -59,4 +59,11 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(error => {
             console.error('Ошибка при запросе профиля:', error);
         });
+
+    const editProfileBtn = document.getElementById('editProfileBtn');
+    if (editProfileBtn) {
+        editProfileBtn.addEventListener('click', () => {
+            window.location.href = '/profile-edit';
+        });
+    }
 });

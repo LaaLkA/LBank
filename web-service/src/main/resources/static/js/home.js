@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const balanceValueElem = document.getElementById('balanceValue');
     const userNameElem = document.getElementById('userName');
     const logoutBtn = document.getElementById('logoutBtn');
+    const balanceCountElem = document.querySelector('.balance-count');
 
     function getCookieValue(cookieName){
         const match = document.cookie.match(new RegExp('(^|;\\s*)' + cookieName + '=([^;]*)'));
@@ -29,7 +30,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 return response.json();
             })
             .then(data => {
-                balanceValueElem.textContent = data;
+                const formattedBalance = Number(data).toLocaleString('ru-RU', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+                balanceValueElem.textContent = formattedBalance;
+                autoFitFont(balanceCountElem);
             })
             .catch(error => {
                 console.error('Ошибка при запросе баланса:', error);
@@ -38,6 +44,15 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     updateBalance();
+
+    function autoFitFont(el) {
+        const containerWidth = el.clientWidth;
+        let currentFontSize = parseFloat(window.getComputedStyle(el).fontSize);
+        while (el.scrollWidth > containerWidth && currentFontSize > 8) {
+            currentFontSize -= 1;
+            el.style.fontSize = currentFontSize + 'px';
+        }
+    }
 
     if (logoutBtn) {
         logoutBtn.addEventListener('click', () => {

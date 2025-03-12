@@ -12,43 +12,38 @@ html, body {
     margin: 0 auto;
     padding: 20px;
 }
-/* Главный контейнер, ограничивающий ширину и центрирующий содержимое */
+
 .transfer-container {
-    max-width: 600px;     /* Можно менять под нужную ширину */
-    margin: 0 auto 40px;  /* Выравнивание по центру и нижний отступ */
+    max-width: 600px;
+    margin: 0 auto 40px;
     padding: 20px;
 }
 
-/* "Шапка" с кнопкой "Назад" и заголовками */
 .page-header {
     display: flex;
     align-items: flex-end;
-    justify-content: start;/* Кнопка и текст выравниваются по верхней линии */
+    justify-content: start;
     gap: 16px;
     margin-bottom: 20px;
 }
 
-/* Кнопка "Назад" */
 .back-button {
     text-decoration: none;
     color: #333;
     font-size: 16px;
 }
 
-/* Обёртка для заголовков */
 .titles {
     display: flex;
-    flex-direction: column;  /* Подзаголовок будет под главным заголовком */
+    flex-direction: column;
 }
 
-/* Главный заголовок "Перевод" */
 .transfer-title {
     font-size: 24px;
     font-weight: bold;
     margin: 0;
 }
 
-/* Подзаголовок "по имени пользователя" */
 .page-subtitle {
     font-size: 16px;
     font-weight: normal;
@@ -56,7 +51,6 @@ html, body {
     color: #555;
 }
 
-/* Общий вид "карточки" */
 .transfer-card {
     width: 100%;
     background-color: #fff;
@@ -66,7 +60,6 @@ html, body {
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-/* Метка (label) */
 .transfer-label {
     display: block;
     font-size: 18px;
@@ -74,13 +67,11 @@ html, body {
     color: #333;
 }
 
-/* Дополнительный текст (например, баланс) */
 .transfer-info {
     font-size: 16px;
     margin: 4px 0;
 }
 
-/* Поля ввода */
 .transfer-input {
     width: 100%;
     border: none;
@@ -92,7 +83,6 @@ html, body {
     box-sizing: border-box;
 }
 
-/* Кнопка отправки */
 .transfer-submit {
     display: block;
     width: 100%;
@@ -112,15 +102,81 @@ html, body {
     background-color: #ffcc00;
 }
 
-/* Блок для вывода ошибок или статусов */
 #resultBlock {
     width: 100%;
     text-align: center;
     font-size: 16px;
-    color: #d00; /* красный для ошибок */
+    color: #d00;
 }
 
-/* Адаптив под мобильные */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: auto;
+    padding: 20px 30px;
+    border-radius: 20px;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.modal-message {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+.modal-btn {
+    flex: 1;
+    padding: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 10px;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+#goHomeBtn {
+    background-color: #007BFF;
+    color: #fff;
+}
+#goHomeBtn:hover {
+    background-color: #0069d9;
+}
+
+#newTransferBtn {
+    background-color: #fff;
+    color: #007BFF;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+#newTransferBtn:hover {
+    box-shadow: inset 0 0 0 2px #007BFF;
+}
+
+.modal.show {
+    display: flex;
+}
+
 @media (max-width: 480px) {
     .transfer-container {
         padding: 10px;

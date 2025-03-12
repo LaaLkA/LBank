@@ -9,7 +9,6 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>common-libs/events-library</module>
         <module>expense-service</module>
         <module>payment-service</module>
         <module>user-service</module>

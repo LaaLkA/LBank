@@ -40,5 +40,21 @@ public class UserProfileService {
         return profileResponse;
     }
 
+    public UserProfile updateProfile(String userName, String email, String firstName, String lastName, String phone) {
+        UserProfile profile = repository.findByUsername(userName);
+        if (profile == null) {
+            throw new RuntimeException("Profile not found for user=" + userName);
+        }
+        profile.setEmail(email);
+        profile.setFirstName(firstName);
+        profile.setLastName(lastName);
+        profile.setPhone(phone);
+
+        System.out.println("Profile updated with USERNAME: " + userName);
+
+        return repository.save(profile);
+    }
+
+
 }
 

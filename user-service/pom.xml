@@ -50,7 +50,6 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- JJWT интеграция с Jackson (для сериализации/десериализации) -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-jackson</artifactId>

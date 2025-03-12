@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.UUID;
 
 public interface BalanceRepository extends JpaRepository<BalanceEntity, UUID> {
-//    BalanceEntity findBalanceByHashUser(String hashUser);
 
     BalanceEntity findBalanceByUserName(String userName);
 }

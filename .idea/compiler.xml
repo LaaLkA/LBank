@@ -18,23 +18,14 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
         </processorPath>
         <module name="auth-service" />
-        <module name="user-service" />
         <module name="expense-service" />
         <module name="payment-service" />
+        <module name="user-service" />
         <module name="web-service" />
-      </profile>
-      <profile name="Annotation profile for events-library" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
-        </processorPath>
-        <module name="events-library" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="events-library" target="17" />
       <module name="expenses-service" target="17" />
       <module name="payment_service" target="17" />
     </bytecodeTargetLevel>

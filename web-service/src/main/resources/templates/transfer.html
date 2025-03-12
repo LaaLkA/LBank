@@ -3,9 +3,9 @@
     <meta charset="UTF-8">
     <title>Перевод</title>
     <link rel="stylesheet" href="/css/transfer.css">
-    <link rel="stylesheet" href="/css/transfer.css">
 </head>
 <body class="wrapper">
+
 <a href="/home" class="back-button">← Назад</a>
 <div class="transfer-container">
 
@@ -23,9 +23,10 @@
             Ваш счёт: <strong id="userName">USERNAME</strong>
         </p>
         <p class="transfer-info">
-            Баланс: <strong id="balanceValue">0</strong> руб.
+            Баланс: <strong id="balanceValue" class="balance-count">0</strong> руб.
         </p>
     </div>
+
     <form id="transferForm">
         <div class="transfer-card">
             <label for="receiverInput" class="transfer-label">Куда</label>
@@ -54,6 +55,17 @@
         <button type="submit" class="transfer-submit">Отправить перевод</button>
     </form>
     <div id="resultBlock"></div>
+</div>
+
+<div class="modal" id="successModal">
+    <div class="modal-content">
+        <p class="modal-message" id="modalMessage">
+        </p>
+        <div class="modal-buttons">
+            <button type="button" id="goHomeBtn" class="modal-btn">На главную</button>
+            <button type="button" id="newTransferBtn" class="modal-btn">Сделать ещё перевод</button>
+        </div>
+    </div>
 </div>
 
 <script th:src="@{/js/transfer.js}"></script>

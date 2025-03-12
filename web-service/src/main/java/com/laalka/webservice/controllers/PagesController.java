@@ -47,6 +47,16 @@ public class PagesController {
         return "profile";
     }
 
+    @GetMapping("/profile-edit")
+    public String profileEdit(
+            @CookieValue(name = "JWT_TOKEN", required = false) String token
+    ) {
+        if (token == null) {
+            return "redirect:/login";
+        }
+        return "profile-edit";
+    }
+
     @GetMapping("/transfer")
     public String transfer(
             @CookieValue(name = "JWT_TOKEN", required = false) String token) {

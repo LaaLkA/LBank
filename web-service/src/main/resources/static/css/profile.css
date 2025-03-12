@@ -61,6 +61,20 @@ html, body {
     color: #555;
 }
 
+.edit-profile-button {
+    display: block;
+    margin: 20px auto 0;
+    padding: 14px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: background-color 0.3s;
+}
 
 @media (max-width: 480px) {
     .profile-container {

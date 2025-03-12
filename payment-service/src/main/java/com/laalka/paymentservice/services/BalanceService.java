@@ -22,11 +22,11 @@ public class BalanceService {
     }
 
     public BalanceEntity createBalance(String userName) {
-        Double balanceCount = new Random().nextDouble(10000.0, 10000000000.0);
+        Double balanceCount = new Random().nextDouble(10000.0, 1000000.0);
         BalanceEntity balance = new BalanceEntity();
         balance.setUserName(userName);
 //        balance.setHashUser(userHash);
-        balance.setBalance(balanceCount);
+        balance.setBalance(Math.round(balanceCount * 100.0) / 100.0);
         return balanceRepository.save(balance);
     }
 }
