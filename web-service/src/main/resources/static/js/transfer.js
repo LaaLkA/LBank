@@ -92,10 +92,26 @@ document.addEventListener("DOMContentLoaded", function () {
                 return response.text();
             })
             .then(data => {
-                resultBlock.innerHTML = `<p style="color: green;">Перевод выполнен: ${data}</p>`;
+                modalMessage.innerHTML = `
+                    <strong>Перевод выполнен успешно!</strong><br><br>
+                    Имя получателя: <b>${receiver}</b><br>
+                    Сумма: <b>${amount}</b> руб.
+                `;
+                successModal.classList.add('show');
             })
             .catch(error => {
                 resultBlock.innerHTML = `<p style="color: red;">Ошибка: ${error.message}</p>`;
             });
+    });
+
+    goHomeBtn.addEventListener('click', () => {
+        window.location.href = '/home';
+    });
+
+    newTransferBtn.addEventListener('click', () => {
+        successModal.classList.remove('show');
+        form.reset();
+        resultBlock.innerHTML = "";
+        updateBalance();
     });
 });
