@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Авторизация</title>
+    <link rel="stylesheet" href="/css/login.css">
+</head>
+<body class="wrapper">
+<div class="login-container">
+    <div class="login-card">
+        <img src="/images/Logo.png" alt="Логотип" class="login-logo">
+
+        <h2 class="login-title">Вход</h2>
+
+        <form id="loginForm" class="login-form">
+            <input type="text" name="userName" placeholder="Имя пользователя" required>
+            <input type="password" name="password" placeholder="Пароль" required>
+
+            <button type="submit" class="login-btn">Войти</button>
+
+            <button type="button" class="register-btn" onclick="window.location.href='/register'">Регистрация</button>
+        </form>
+
+        <div class="error" id="loginError"></div>
+    </div>
+</div>
+
+<script th:src="@{/js/login.js}"></script>
+</body>
+</html>

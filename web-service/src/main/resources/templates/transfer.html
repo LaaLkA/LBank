@@ -1,0 +1,73 @@
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Перевод</title>
+    <link rel="stylesheet" href="/css/transfer.css">
+</head>
+<body class="wrapper">
+
+<a href="/home" class="back-button">← Назад</a>
+<div class="transfer-container">
+
+    <div class="page-header">
+        <div class="titles">
+            <h1 class="transfer-title">Перевод</h1>
+            <h2 class="page-subtitle">по имени пользователя</h2>
+        </div>
+    </div>
+
+    <div class="transfer-card">
+        <label class="transfer-label">Откуда</label>
+        <p class="transfer-info">
+            Ваш счёт: <strong id="userName">USERNAME</strong>
+        </p>
+        <p class="transfer-info">
+            Баланс: <strong id="balanceValue" class="balance-count">0</strong> руб.
+        </p>
+    </div>
+
+    <form id="transferForm">
+        <div class="transfer-card">
+            <label for="receiverInput" class="transfer-label">Куда</label>
+            <input
+                    id="receiverInput"
+                    class="transfer-input"
+                    name="receiver"
+                    placeholder="Получатель (Имя пользователя)"
+                    required
+            />
+        </div>
+
+        <div class="transfer-card">
+            <label for="amountInput" class="transfer-label">Сколько перевести</label>
+            <input
+                    id="amountInput"
+                    class="transfer-input"
+                    name="amount"
+                    placeholder="Сумма"
+                    type="number"
+                    min="1"
+                    required
+            />
+        </div>
+
+        <button type="submit" class="transfer-submit">Отправить перевод</button>
+    </form>
+
+    <div id="resultBlock"></div>
+</div>
+
+<div class="modal" id="successModal">
+    <div class="modal-content">
+        <p class="modal-message" id="modalMessage">
+        </p>
+        <div class="modal-buttons">
+            <button type="button" id="goHomeBtn" class="modal-btn">На главную</button>
+            <button type="button" id="newTransferBtn" class="modal-btn">Сделать ещё перевод</button>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/js/transfer.js}"></script>
+</body>
+</html>

@@ -14,13 +14,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class BalanceRequest {
 
-    @NotNull
-    private Long userId;
-    @NotNull
     private String userName;
-    @NotNull
-    private LocalDateTime userCreated;
 
-    public BalanceRequest() {
-    }
 }

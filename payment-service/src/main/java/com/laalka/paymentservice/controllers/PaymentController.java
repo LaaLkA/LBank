@@ -4,10 +4,7 @@ import com.laalka.paymentservice.dto.TransferRequest;
 import com.laalka.paymentservice.services.PaymentService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/transfer")
@@ -20,20 +17,18 @@ public class PaymentController {
     }
 
     @PostMapping()
-    public ResponseEntity<String> transfer(@Valid @RequestBody TransferRequest request) {
+    public ResponseEntity<String> transfer(
+            @RequestBody TransferRequest request,
+            @CookieValue(name = "JWT_TOKEN", required = false) String token) {
+
         paymentService.transaction(
-                request.getSenderId(),
-                request.getSenderName(),
-                request.getSenderCreated(),
+                request.getSender(),
+                request.getReceiver(),
                 request.getAmount(),
-                request.getReceiverId(),
-                request.getReceiverName(),
-                request.getReceiverCreated()
+                token
         );
         return ResponseEntity.ok("Transfer successful");
     }
-
-
 
 
 }

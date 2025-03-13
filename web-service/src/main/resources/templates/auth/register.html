@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="/css/register.css">
+</head>
+<body class="wrapper">
+<div class="register-container">
+    <div class="register-card">
+        <h2 class="register-title">Регистрация</h2>
+
+        <form id="registerForm" class="register-form">
+            <input type="text" name="userName" placeholder="Имя пользователя" required>
+            <input type="password" name="password" placeholder="Введите пароль" required>
+            <input type="password" name="re-password" placeholder="Повторите пароль" required>
+
+            <button type="submit" class="register-btn-submit">Зарегистрироваться</button>
+
+            <button type="button" class="register-btn-login" onclick="window.location.href='/login'">Войти</button>
+        </form>
+
+        <div class="error-message" id="registerError"></div>
+    </div>
+</div>
+
+<script th:src="@{/js/register.js}"></script>
+</body>
+</html>

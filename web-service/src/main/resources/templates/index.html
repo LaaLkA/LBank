@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Добро пожаловать в LBank</title>
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <img src="/images/Logo.png" alt="LBank Logo" class="logo">
+
+        <h1 class="greeting">
+            Вас приветствует
+            <span class="highlighted">L</span>Bank
+        </h1>
+
+        <div class="actions">
+            <p>Если у вас <strong>нет аккаунта</strong>, пройдите регистрацию:</p>
+            <button type="button" class="action-btn" onclick="window.location.href='/register'">
+                Регистрация
+            </button>
+        </div>
+
+        <div class="actions">
+            <p>Если у вас уже есть аккаунт, авторизуйтесь:</p>
+            <button type="button" class="action-btn" onclick="window.location.href='/login'">
+                Войти
+            </button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

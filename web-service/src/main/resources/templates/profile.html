@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Профиль</title>
+    <link rel="stylesheet" href="/css/profile.css">
+<!--    <link rel="stylesheet" href="/static/css/profile.css">-->
+</head>
+<body class="wrapper">
+
+<a href="/home" class="back-button">← Назад</a>
+
+<div class="profile-container">
+    <div class="page-header">
+        <h1 class="profile-title">Профиль пользователя</h1>
+    </div>
+
+    <div class="profile-card">
+        <label class="profile-label">Логин</label>
+        <p class="profile-info" id="profileUserName"></p>
+    </div>
+
+    <div class="profile-card">
+        <label class="profile-label">Имя</label>
+        <p class="profile-info" id="profileFirstName"></p>
+    </div>
+
+    <div class="profile-card">
+        <label class="profile-label">Фамилия</label>
+        <p class="profile-info" id="profileLastName"></p>
+    </div>
+
+    <div class="profile-card">
+        <label class="profile-label">Email</label>
+        <p class="profile-info" id="profileEmail"></p>
+    </div>
+
+    <div class="profile-card">
+        <label class="profile-label">Телефон</label>
+        <p class="profile-info" id="profilePhone"></p>
+    </div>
+
+    <button id="editProfileBtn" class="edit-profile-button">Изменить профиль</button>
+</div>
+
+<script th:src="@{/js/profile.js}"></script>
+</body>
+</html>

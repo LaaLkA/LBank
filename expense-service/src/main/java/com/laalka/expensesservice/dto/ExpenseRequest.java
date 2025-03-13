@@ -12,11 +12,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ExpenseRequest {
-    @NotNull
-    private Long userId;
 
-    private Long receiverId;
+    private String sender;
+    private String receiver;
     private Double amount;
-    private String category;
 
 }

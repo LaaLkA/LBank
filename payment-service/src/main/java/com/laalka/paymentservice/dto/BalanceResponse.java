@@ -13,8 +13,6 @@ public class BalanceResponse {
     @NotNull
     private Double balance;
 
-    public BalanceResponse() {
-    }
 }
 
 

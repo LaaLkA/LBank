@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Домашняя страница</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<header>
+    <h1 Добро пожаловать!></h1>
+</header>
+<div class="container">
+    <section class="balance-section">
+        <p>Текущий баланс: <span id="balanceValue">--</span> руб.</p>
+        <button id="refreshBalanceBtn">Обновить баланс</button>
+    </section>
+</div>
+
+<div class="container">
+    <nav>
+        <ul class="menu">
+            <li><a href="/income">Поступления</a></li>
+            <li><a href="/expenses">Траты</a></li>
+            <li><a href="/transfer">Перевод</a></li>
+            <li><a href="/profile">Профиль</a></li>
+        </ul>
+    </nav>
+</div>
+
+
+<script th:src="@{/js/home.js}"></script>
+</body>
+</html>

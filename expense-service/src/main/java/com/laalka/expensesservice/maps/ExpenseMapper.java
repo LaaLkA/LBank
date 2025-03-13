@@ -12,10 +12,12 @@ public class ExpenseMapper {
      */
     public ExpenseEntity fromRequestToEntity(ExpenseRequest request) {
         ExpenseEntity entity = new ExpenseEntity();
-        entity.setUserId(request.getUserId());
-        entity.setReceiverId(request.getReceiverId());
+//        entity.setUserHash(request.getUserHash());
+//        entity.setReceiverHash(request.getReceiverHash());
+        entity.setSender(request.getSender());
+        entity.setReceiver(request.getReceiver());
         entity.setAmount(request.getAmount());
-        entity.setCategory(request.getCategory());
+//        entity.setCategory(request.getCategory());
         return entity;
     }
     /**
@@ -24,10 +26,12 @@ public class ExpenseMapper {
     public ExpenseResponse fromEntityToResponse(ExpenseEntity entity) {
         ExpenseResponse response = new ExpenseResponse();
         response.setId(entity.getId());
-        response.setUserId(entity.getUserId());
-        response.setReceiverId(entity.getReceiverId());
+//        response.setUserHash(entity.getUserHash());
+//        response.setReceiverHash(entity.getReceiverHash());
+        response.setSender(entity.getSender());
+        response.setReceiver(entity.getReceiver());
         response.setAmount(entity.getAmount());
-        response.setCategory(entity.getCategory());
+//        response.setCategory(entity.getCategory());
         return response;
     }
 }

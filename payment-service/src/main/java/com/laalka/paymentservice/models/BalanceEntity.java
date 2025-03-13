@@ -3,17 +3,19 @@ package com.laalka.paymentservice.models;
 import jakarta.persistence.*;
 import lombok.Data;
 
-@Data
+import java.util.UUID;
+
 @Entity
 @Table(name="balances")
+@Data
 public class BalanceEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue()
+    private UUID id;
 
-    @Column(name="hash_user")
-    private String hashUser;
+    @Column(name="userName")
+    private String userName;
 
     @Column(name="balance")
     private Double balance;

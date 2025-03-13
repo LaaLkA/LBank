@@ -1,5 +1,6 @@
 server:
-  port: 8080
+  forward-headers-strategy: framework
+  port: 8089
 
 spring:
   application:
@@ -17,16 +18,31 @@ spring:
             - Path=/user/**
           filters:
             - StripPrefix=1
-        - id: expenses-service
-          uri: lb://EXPENSES-SERVICE
+        - id: expense-service
+          uri: lb://EXPENSE-SERVICE
           predicates:
-            - Path=/expenses/**
+            - Path=/expense/**
+          filters:
+            - StripPrefix=1
         - id: payment-service
           uri: lb://PAYMENT-SERVICE
           predicates:
             - Path=/payment/**
+          filters:
+            - StripPrefix=1
+        - id: auth-service
+          uri: lb://AUTH-SERVICE
+          predicates:
+            - Path=/auth/**
+          filters:
+            - StripPrefix=1
 
 eureka:
   client:
     service-url:
       defaultZone: http://eureka-server:8761/eureka
+
+logging:
+  level:
+    org:
+      springframework: DEBUG

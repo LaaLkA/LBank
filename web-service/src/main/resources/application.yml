@@ -1,0 +1,15 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: web-service
+  mvc:
+    view:
+      suffix: .html
+  web:
+    resources:
+      static-locations: classpath:/static/,classpath:/templates/
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka

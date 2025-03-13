@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class ExpenseServiceImpl implements ExpenseService {
@@ -21,22 +22,27 @@ public class ExpenseServiceImpl implements ExpenseService {
     }
 
     @Override
-    public List<ExpenseEntity> expensesList(Long userId) {
-        return expensesRepository.findByUserId(userId);
+    public List<ExpenseEntity> expensesList(String sender) {
+        return expensesRepository.findExpenseBySender(sender);
     }
 
     @Override
-    public ExpenseEntity createExpense(Long userId, Long receiverId, Double amount) {
-        return expensesRepository.save(new ExpenseEntity(userId, receiverId, amount, "No defined"));
+    public List<ExpenseEntity> incomesList(String receiver) {
+        return  expensesRepository.findExpenseByReceiver(receiver);
+    }
+
+
+    @Override
+    public void createExpense(ExpenseEntity expense) {
+        expensesRepository.save(expense);
     }
 
     @Override
-    public ExpenseEntity createExpense(Long userId, Long receiverId, Double amount, String category) {
-        return expensesRepository.save(new ExpenseEntity(userId, receiverId, amount, category));
-    }
-
-    @Override
-    public ExpenseEntity updateExpense(Long expenseId, Long userId, Long receiverId, Double amount, String category) {
+    public ExpenseEntity updateExpense(UUID expenseId,
+                                       String sender,
+                                       String receiver,
+                                       Double amount,
+                                       String category) {
         Optional<ExpenseEntity> optionalExpense = expensesRepository.findById(expenseId);
         if (optionalExpense.isEmpty()) {
             throw new RuntimeException("Expense with id " + expenseId + " not found");
@@ -44,19 +50,10 @@ public class ExpenseServiceImpl implements ExpenseService {
 
         ExpenseEntity existingExpense = optionalExpense.get();
 
-        existingExpense.setUserId(existingExpense.getUserId());
-        existingExpense.setReceiverId(existingExpense.getReceiverId());
         existingExpense.setAmount(existingExpense.getAmount());
         existingExpense.setCategory(existingExpense.getCategory());
 
         return expensesRepository.save(existingExpense);
     }
 
-    @Override
-    public void deleteExpense(Long expenseId) {
-        if (!expensesRepository.existsById(expenseId)) {
-            throw new RuntimeException("Expense with id " + expenseId + " not found");
-        }
-        expensesRepository.deleteById(expenseId);
-    }
 }

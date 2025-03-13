@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Поступления пользователя</title>
+    <link rel="stylesheet" href="/css/income.css">
+<!--    <link rel="stylesheet" href="/static/css/income.css">-->
+</head>
+<body class="wrapper">
+<a href="/home" class="back-button">← Назад</a>
+
+<div class="page-header">
+    <h1 class="page-title">Ваши поступления</h1>
+</div>
+
+<div class="income-container">
+    <div class="income-card">
+        <table id="incomeTable">
+            <thead>
+            <tr>
+                <th>Отправитель</th>
+                <th>Сумма</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script th:src="@{/js/income.js}"></script>
+</body>
+</html>

@@ -5,10 +5,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.UUID;
 
 @Repository
-public interface ExpensesRepository extends JpaRepository<ExpenseEntity, Long> {
-    ExpenseEntity findByReceiverId(Long receiverId);
-    List<ExpenseEntity> findByUserId(Long userId);
-    boolean existsByTransactionId(String transactionId);
+public interface ExpensesRepository extends JpaRepository<ExpenseEntity, UUID> {
+    List<ExpenseEntity> findExpenseBySender(String sender);
+
+    List<ExpenseEntity> findExpenseByReceiver(String receiver);
 }

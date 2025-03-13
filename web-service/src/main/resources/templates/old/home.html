@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Главная</title>
+  <link rel="stylesheet" href="/css/home.css">
+</head>
+<body>
+<div class="main-container">
+  <div class="main-container-left">
+    <aside class="sidebar">
+      <div class="user-info">
+        <div class="user-data">
+          <img src="/images/user-icon.png" alt="User Icon" class="avatar">
+          <p class="username"><span id="userName">USERNAME</span></p>
+        </div>
+        <div class="balance">
+          <img src="/images/balance-icon.png" alt="BalanceIcon" class="balance-ico">
+          <p class="balance-count"><span id="balanceValue">9 999</span> руб.</p>
+        </div>
+      </div>
+    </aside>
+    <nav class="menu">
+      <ul>
+        <li><a href="/income">Поступления</a></li>
+        <li><a href="/expenses">Расходы</a></li>
+        <li><a href="/transfer">Перевод</a></li>
+        <li><a href="/profile">Профиль</a></li>
+      </ul>
+    </nav>
+  </div>
+  <section class="content">
+    <h1>Добро пожаловать!</h1>
+  </section>
+</div>
+
+
+<script th:src="@{/js/home.js}"></script>
+</body>
+</html>

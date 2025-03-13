@@ -1,9 +1,10 @@
 package com.laalka.expensesservice.dto;
 
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.UUID;
 
 /**
  * DTO для ответа о расходе.
@@ -13,13 +14,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ExpenseResponse {
 
-    private Long id;
-    private Long userId;
-
-    @NotNull
-    private Long receiverId;
-    @NotNull
+    private UUID id;
+    private String sender;
+    private String receiver;
     private Double amount;
 
-    private String category;
 }
